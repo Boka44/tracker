@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const config = require(`./env/${process.env.NODE_ENV}`);
+const config = require(`./env/staging`);
 console.log(process.env.NODE_ENV);
 
 
