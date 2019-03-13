@@ -1,0 +1,1 @@
+// Make a columns schema for each agghog category

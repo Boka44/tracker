@@ -1,0 +1,1 @@
+rm -rf node_modules/logger && git clone https://github.com/rapidbizapps/rapid-node-logger logger && mv logger node_modules && cd node_modules/logger && npm install && rm -rf .git

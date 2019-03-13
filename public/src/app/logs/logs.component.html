@@ -1,0 +1,24 @@
+<div id="page-wrapper" align="center">
+  <div>
+    <div class="scroll-bar" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="10" (scrolled)="onScroll()"
+    [scrollWindow]="false">
+      <ul>
+        <li *ngFor="let log of logs">
+          {{ log.message }}
+        </li>
+      </ul>  
+    </div>
+  </div>
+  <div>
+      <div>           
+        <input type="radio" [(ngModel)]="type" id="box1" value="safety"> 
+        <label for="box1">Safety Note</label>
+        <input type="radio" [(ngModel)]="type" id="box2" value="hazard"> 
+        <label for="box2">Hazard Note</label>
+        <input type="radio" [(ngModel)]="type" id="box3" value="shift"> 
+        <label for="box3">Shift Note</label>
+      </div>
+      <textarea rows="5" cols="50" [(ngModel)]="message"></textarea>
+      <button (click)="addLog()">Add</button>
+  </div>
+</div>

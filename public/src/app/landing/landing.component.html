@@ -1,0 +1,78 @@
+<div id="wrapper">
+    <nav class="navbar navbar-fixed-top navbar-default">
+        <!-- search -->
+        <div class="flt-lft">
+            <input type="text" placeholder="Search" class="form-control">
+            <img src="/assets/images/search-itm.png" alt="search-itm.png">
+        </div>
+        <!-- //search -->
+        <!-- navbar-right -->
+        <ul class="nav navbar-nav navbar-right">
+            <li class="pflicn">
+                <a><img src="/assets/images/notification.svg" alt="notification.svg"></a>
+            </li>
+            <li class="pflicn"><a> <img src="/assets/images/userprofile.png" alt="userprofile.png"></a></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                    <img src="/assets/images/logout-img.svg" alt="logout-img.svg">
+                </a>
+                <!-- <ul class="dropdown-menu">
+                    <li><a>Setting</a></li>
+                    <li class="lgt-btn">
+                        <button class="btn btn-default">Logout</button>
+                    </li>
+                </ul> -->
+            </li> 
+        </ul>
+        <!-- //navbar-right -->
+        <!-- sidebar -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse collapse">
+            <div class="side-nav">
+                <!-- groundhog-logo -->
+                <div class="grl-lg">
+                    <img src="/assets/images/groundhog-logo.svg" alt="groundhog-logo.svg">
+                </div>
+                <!-- //groundhog-logo -->
+                <!-- sidenav items -->
+                <ul class="navbar-nav nav">
+                    <li [ngClass]="{'active':currentPage === 'dashboard'}">
+                        <a [routerLink]="['/dashboard']">
+                            <img src="/assets/images/dashboard.svg" alt="dashboard.svg">
+                            <span class="nly-span">Dashboard</span>
+                        </a>
+                    </li>
+                    <li [ngClass]="{'active':currentPage === 'equipmentStats'}">
+                        <a [routerLink]="['/equipmentStats']">
+                            <img src="/assets/images/equipment.svg" alt="equipment.svg">
+                            <span>Equipment Stats</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <img src="/assets/images/location.svg" alt="loction.svg">
+                            <span> Location Stats</span>
+                        </a>
+                    </li>
+                    <li [ngClass]="{'active':currentPage === 'logs'}">
+                        <a [routerLink]="['/logs']">
+                            <img src="/assets/images/task.svg" alt="task.svg">
+                            <span>Shift Logs</span>
+                        </a>
+                    </li>
+                </ul>
+                <!-- //sidenav items -->
+                <!-- version -->
+                <div class="btm-logo stch-lgo">
+                    <div class="d-blc">
+                        <img src="/assets/images/rapidbiz.svg" alt="rapdbiz.svg">
+                        <span class="opcty-basd">v5.4</span>
+                    </div>
+                </div>
+                <!--// version -->
+            </div>
+        </div>
+        <!--// sidebar -->
+    </nav>
+    <router-outlet></router-outlet>
+    <!-- //navbar -->
+</div>

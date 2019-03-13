@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons/Reports" fill="#A5A4BF">
+            <g id="Group">
+                <rect id="Rectangle" x="0" y="0" width="2" height="18" rx="1"></rect>
+                <rect id="Rectangle" transform="translate(5.500000, 9.242641) rotate(-45.000000) translate(-5.500000, -9.242641) " x="3.5" y="8.24264069" width="4" height="2"></rect>
+                <rect id="Rectangle-Copy-2" transform="translate(9.207107, 7.949747) rotate(45.000000) translate(-9.207107, -7.949747) " x="6.20710678" y="6.94974747" width="6" height="2"></rect>
+                <rect id="Rectangle" transform="translate(13.560660, 7.181981) rotate(-45.000000) translate(-13.560660, -7.181981) " x="10.0606602" y="6.18198052" width="7" height="2"></rect>
+                <rect id="Rectangle-Copy" transform="translate(9.000000, 17.000000) rotate(90.000000) translate(-9.000000, -17.000000) " x="8" y="8" width="2" height="18" rx="1"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="4px" height="16px" viewBox="0 0 4 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>More Icon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Organisms/Topbar" transform="translate(-1319.000000, -22.000000)" fill="#9B9B9B" fill-rule="nonzero">
+            <g id="Topbar">
+                <path d="M1321,26 C1322.1,26 1323,25.1 1323,24 C1323,22.9 1322.1,22 1321,22 C1319.9,22 1319,22.9 1319,24 C1319,25.1 1319.9,26 1321,26 Z M1321,28 C1319.9,28 1319,28.9 1319,30 C1319,31.1 1319.9,32 1321,32 C1322.1,32 1323,31.1 1323,30 C1323,28.9 1322.1,28 1321,28 Z M1321,34 C1319.9,34 1319,34.9 1319,36 C1319,37.1 1319.9,38 1321,38 C1322.1,38 1323,37.1 1323,36 C1323,34.9 1322.1,34 1321,34 Z" id="More-Icon"></path>
+            </g>
+        </g>
+    </g>
+</svg>

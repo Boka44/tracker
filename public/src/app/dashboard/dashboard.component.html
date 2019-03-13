@@ -1,0 +1,286 @@
+<div id="page-wrapper">
+    <div class="col-sm-12">
+        <!-- shift date and time -->
+        <div class="day-shft">
+            <ul class="nav">
+                <li>
+                    <p>Date & time</p>
+                    <h4>Mon 25 Feb</h4>
+                </li>
+                <li>
+                    <p>shift</p>
+                    <h4>Day Shift</h4>
+                </li>
+            </ul>
+            <!--// shift date and time -->
+            <!-- add location -->
+            <div class="schd-topright">
+                <a class="btn bg-btn color-mrn" data-toggle="modal" data-target="#addModal">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                    Add New User
+                </a>
+            </div>
+            <!--// add location -->
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <!-- status of shifts -->
+        <div class="status-shifts">
+            <!-- active shift -->
+            <div class="actvt-shift">
+                <h4 class="title">Working</h4>
+                <div class="inside-itms"  id="working" [sortablejs]="working" [sortablejsOptions]="options">
+                    <!-- shift items -->
+                    <ul class="nav activ-lst" *ngFor="let item of working" id="{{ item._id }}">
+                        <li>
+                            <!-- nested list -->
+                            <ul class="nav nested-list">
+                                <li>
+                                    <p>Name</p>
+                                    <h4>{{ item.name }}</h4>
+                                </li>
+                                <li>
+                                    <p>Updated At</p>
+                                    <h4>{{ item.updatedAt }}</h4>
+                                </li>
+                            </ul>
+                            <!--// nested list -->
+                          </li>
+                        <li class="imp-notes">
+                            <p>notes</p>
+                            <p>{{ item.notes }}</p>
+                            <div class="edit-shit" data-toggle="modal" data-target="#editModal" (click)="selectUser(item._id)">
+                                <img src="/assets/images/edit-icn.svg" alt="edit-icn.svg">
+                            </div>
+                        </li>
+                        <div class="move">
+                            <img src="/assets/images/move-icn.svg" alt="move-icn.svg">
+                        </div>
+                    </ul>
+                    <!--// shift items -->
+                </div>
+            </div>
+            <!--// active shift -->
+            <!-- other-active -->
+            <div class="actvt-shift">
+                <h4 class="title">Lunch/ Break</h4>
+                <div class="inside-itms"  id="lunch" [sortablejs]="lunch" [sortablejsOptions]="options">
+                    <!-- shift items -->
+                    <ul class="nav activ-lst" *ngFor="let item of lunch" id="{{ item._id }}">
+                        <li>
+                            <!-- nested list -->
+                            <ul class="nav nested-list">
+                                <li>
+                                    <p>Name</p>
+                                    <h4>{{ item.name }}</h4>
+                                </li>
+                                <li>
+                                    <p>Updated At</p>
+                                    <h4>{{ item.updatedAt }}</h4>
+                                </li>
+                            </ul>
+                            <!--// nested list -->
+                        </li>
+                        <li class="imp-notes">
+                            <p>notes</p>
+                            <p>{{ item.notes }}</p>
+                            <div class="edit-shit" data-toggle="modal" data-target="#editModal" (click)="selectUser(item._id)">
+                                <img src="/assets/images/edit-icn.svg" alt="edit-icn.svg">
+                            </div>
+                        </li>
+                        <div class="move">
+                            <img src="/assets/images/move-icn.svg" alt="move-icn.svg">
+                        </div>
+                    </ul>
+                </div>
+            </div>
+            <!--// other-active -->
+            <!-- colsed -->
+            <div class="actvt-shift">
+                <h4 class="title">Pool</h4>
+                <div class="inside-itms" id="pool" [sortablejs]="pool" [sortablejsOptions]="options">
+                    <!-- shift items -->
+                    <ul class="nav activ-lst" *ngFor="let item of pool" id="{{ item._id }}">
+                        <li>
+                            <!-- nested list -->
+                            <ul class="nav nested-list">
+                                <li>
+                                    <p>Name</p>
+                                    <h4>{{ item.name }}</h4>
+                                </li>
+                                <li>
+                                    <p>Updated At</p>
+                                    <h4>{{ item.updatedAt }}</h4>
+                                </li>
+                            </ul>
+                            <!--// nested list -->
+                        </li>
+                        <li class="imp-notes">
+                            <p>notes</p>
+                            <p>{{ item.notes }}</p>
+                            <div class="edit-shit" data-toggle="modal" data-target="#editModal" (click)="selectUser(item._id)">
+                                <img src="/assets/images/edit-icn.svg" alt="edit-icn.svg">
+                            </div>
+                        </li>
+                        <div class="move">
+                            <img src="/assets/images/move-icn.svg" alt="move-icn.svg">
+                        </div>
+                    </ul>
+                    <!-- shift items -->
+                </div>
+            </div>
+            <!--// colsed -->
+        </div>
+        <!--// status of shifts -->
+    </div>
+</div>
+
+<div class="modal fade" id="addModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content" align="center">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <img src="assets/images/close.png">
+                  </button>
+            <h4 class="modal-title">Add User</h4>
+        </div>
+        <div class="modal-body">
+                <p class="err-msg" *ngIf="isVisible">
+                        {{message}}
+                        <!-- This account has been deactivated -->
+                      </p>
+                        <div class="col-lg-12 col-md-12 col-sm-12 pad-0">
+                            <form class="form-add-usr userBody">
+                              <label class="grey">
+                                <b>FULL NAME</b>
+                              </label>
+                              <input name="name" class="form-control lgn-input editable" [(ngModel)]="userObj.name">
+                                          <label class="grey">
+                                <b>PASSWORD</b>
+                              </label>
+                              <input name="name" class="form-control lgn-input editable" [(ngModel)]="userObj.password">
+                              <label class="grey">
+                                <b>EMAIL</b>
+                              </label>
+                              <input name="name" class="form-control lgn-input editable" [(ngModel)]="userObj.email">
+                                           <label class="grey">
+                                <b>STATUS</b>
+                              </label>
+                              <mat-form-field class="lgn-input editable">
+                                  <mat-select [(placeholder)]="role" [(value)]="userObj.status">
+                                    <mat-option value="working">
+                                      Working
+                                    </mat-option>
+                                    <mat-option value="lunch">
+                                      Lunch/ Break
+                                    </mat-option>
+                                    <mat-option value="pool">
+                                      Pool
+                                    </mat-option>
+                                    <!-- <mat-option value="seniorManager">
+                                      Senior Manager
+                                    </mat-option>
+                                    <mat-option value="webAdmin">
+                                      Admin
+                                    </mat-option> -->
+                                  </mat-select>
+                                </mat-form-field>                              
+                                <label class="grey">
+                                  <b>ROLE</b>
+                                </label>
+                                <mat-form-field class="lgn-input editable">
+                                    <mat-select [(placeholder)]="role" [(value)]="userObj.role">
+                                      <mat-option value="employee">
+                                        Employee
+                                      </mat-option>
+                                      <mat-option value="supervisor">
+                                        Supervisor
+                                      </mat-option>
+                                      <mat-option value="manager">
+                                        Manager
+                                      </mat-option>
+                                      <!-- <mat-option value="seniorManager">
+                                        Senior Manager
+                                      </mat-option>
+                                      <mat-option value="webAdmin">
+                                        Admin
+                                      </mat-option> -->
+                                    </mat-select>
+                                  </mat-form-field>
+                                  <label class="grey">
+                                      <b>NOTES</b>
+                                    </label>
+                                    <textarea name="name" class="form-control lgn-input editable" rows="6" cols="50" [(ngModel)]="userObj.notes"></textarea>
+                            </form>
+                      </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" data-dismiss="modal" class="btn">CANCEL</button>
+          <button type="button" (click)="addUser()"  class="btn">ADD</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content" align="center">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <img src="assets/images/close.png">
+                  </button>
+            <h4 class="modal-title">Edit User</h4>
+        </div>
+        <div class="modal-body">
+                <p class="err-msg" *ngIf="isVisible">
+                        {{message}}
+                        <!-- This account has been deactivated -->
+                      </p>
+                      <button type="button" (click)="deleteUser()"  class="btn btn-danger">DELETE</button>
+                        <div class="col-lg-12 col-md-12 col-sm-12 pad-0">
+                            <form class="form-add-usr userBody">
+                              <label class="grey">
+                                <b>FULL NAME</b>
+                              </label>
+                              <input name="name" class="form-control lgn-input editable" [(ngModel)]="currentUser.name">
+                              <label class="grey">
+                                <b>EMAIL</b>
+                              </label>
+                              <input name="email" class="form-control lgn-input editable" [(ngModel)]="currentUser.email">                         
+                                <label class="grey">
+                                  <b>ROLE</b>
+                                </label>
+                                <mat-form-field class="lgn-input editable">
+                                    <mat-select [(placeholder)]="role" [(value)]="currentUser.role">
+                                      <mat-option value="employee">
+                                        Employee
+                                      </mat-option>
+                                      <mat-option value="supervisor">
+                                        Supervisor
+                                      </mat-option>
+                                      <mat-option value="manager">
+                                        Manager
+                                      </mat-option>
+                                      <!-- <mat-option value="seniorManager">
+                                        Senior Manager
+                                      </mat-option>
+                                      <mat-option value="webAdmin">
+                                        Admin
+                                      </mat-option> -->
+                                    </mat-select>
+                                  </mat-form-field>
+                                  <label class="grey">
+                                      <b>NOTES</b>
+                                    </label>
+                                    <textarea name="notes" class="form-control lgn-input editable" rows="6" cols="50" [(ngModel)]="currentUser.notes"></textarea>
+                            </form>
+                      </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" data-dismiss="modal" class="btn ">CANCEL</button>
+          <button type="button" (click)="editUser()"  class="btn ">EDIT</button>
+        </div>
+      </div>
+    </div>
+</div>
+

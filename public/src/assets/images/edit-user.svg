@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>baseline-edit-24px</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Admin-view" transform="translate(-929.000000, -547.000000)">
+            <g id="baseline-edit-24px" transform="translate(927.000000, 545.000000)">
+                <path d="M2.5,14.375 L2.5,17.5 L5.625,17.5 L14.8416667,8.28333333 L11.7166667,5.15833333 L2.5,14.375 Z M17.2583333,5.86666667 C17.5833333,5.54166667 17.5833333,5.01666667 17.2583333,4.69166667 L15.3083333,2.74166667 C14.9833333,2.41666667 14.4583333,2.41666667 14.1333333,2.74166667 L12.6083333,4.26666667 L15.7333333,7.39166667 L17.2583333,5.86666667 Z" id="Shape" fill-opacity="0.34" fill="#000000" fill-rule="nonzero"></path>
+                <polygon id="Path" points="0 0 20 0 20 20 0 20"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>
