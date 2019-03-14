@@ -1,3 +1,274 @@
-<p>
-  locations works!
-</p>
+<div id="page-wrapper">
+    <div class="col-sm-12">
+        <!-- shift date and time -->
+        <div class="day-shft">
+            <ul class="nav">
+                <li>
+                    <p>Date & time</p>
+                    <h4>Mon 25 Feb</h4>
+                </li>
+                <li>
+                    <p>shift</p>
+                    <h4>Day Shift</h4>
+                </li>
+            </ul>
+            <!--// shift date and time -->
+            <!-- add location -->
+            <div class="schd-topright">
+                <a class="btn bg-btn color-mrn" data-toggle="modal" data-target="#addModal">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                    Add New Location
+                </a>
+            </div>
+            <!--// add location -->
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <!-- status of shifts -->
+        <div class="status-shifts">
+            <!-- active shift -->
+            <div class="actvt-shift">
+                <h4 class="title">Active</h4>
+                <div class="inside-itms"  id="active" [sortablejs]="active" [sortablejsOptions]="options">
+                    <!-- shift items -->
+                    <ul class="nav activ-lst" *ngFor="let item of active" id="{{ item._id }}">
+                        <li>
+                            <!-- nested list -->
+                            <ul class="nav nested-list">
+                                <li>
+                                    <p>Location ID</p>
+                                    <h4>{{ item.name }}</h4>
+                                </li>
+                                <li>
+                                    <p>Updated At</p>
+                                    <h4>{{ item.updatedAt }}</h4>
+                                </li>
+                            </ul>
+                            <ul class="nav nested-list">
+                                <li>
+                                    <p>Tons</p>
+                                    <h4>{{ item.tons }}</h4>
+                                </li>
+                                <li>
+                                    <p>Material</p>
+                                    <h4>{{ item.material }}</h4>
+                                </li>
+                            </ul>
+                            <!--// nested list -->
+                        </li>
+                        <li class="imp-notes">
+                            <p>notes</p>
+                            <p>{{ item.notes }}</p>
+                            <div class="edit-shit" data-toggle="modal" data-target="#editModal" (click)="selectLocation(item._id)">
+                                <img src="/assets/images/edit-icn.svg" alt="edit-icn.svg">
+                            </div>
+                        </li>
+                        <div class="move">
+                            <img src="/assets/images/move-icn.svg" alt="move-icn.svg">
+                        </div>
+                    </ul>
+                    <!--// shift items -->
+                </div>
+            </div>
+            <!--// active shift -->
+            <!-- other-active -->
+            <div class="actvt-shift">
+                <h4 class="title">Available</h4>
+                <div class="inside-itms"  id="available" [sortablejs]="available" [sortablejsOptions]="options">
+                    <!-- shift items -->
+                    <ul class="nav activ-lst" *ngFor="let item of available" id="{{ item._id }}">
+                        <li>
+                            <!-- nested list -->
+                            <ul class="nav nested-list">
+                                <li>
+                                    <p>Location ID</p>
+                                    <h4>{{ item.name }}</h4>
+                                </li>
+                                <li>
+                                    <p>Updated At</p>
+                                    <h4>{{ item.updatedAt }}</h4>
+                                </li>
+                            </ul>
+                            <ul class="nav nested-list">
+                                <li>
+                                    <p>Tons</p>
+                                    <h4>{{ item.tons }}</h4>
+                                </li>
+                                <li>
+                                    <p>Material</p>
+                                    <h4>{{ item.material }}</h4>
+                                </li>
+                            </ul>
+                            <!--// nested list -->
+                        </li>
+                        <li class="imp-notes">
+                            <p>notes</p>
+                            <p>{{ item.notes }}</p>
+                            <div class="edit-shit" data-toggle="modal" data-target="#editModal" (click)="selectLocation(item._id)">
+                                <img src="/assets/images/edit-icn.svg" alt="edit-icn.svg">
+                            </div>
+                        </li>
+                        <div class="move">
+                            <img src="/assets/images/move-icn.svg" alt="move-icn.svg">
+                        </div>
+                    </ul>
+                </div>
+            </div>
+            <!--// other-active -->
+            <!-- colsed -->
+            <div class="actvt-shift">
+                <h4 class="title">Closed</h4>
+                <div class="inside-itms" id="closed" [sortablejs]="closed" [sortablejsOptions]="options">
+                    <!-- shift items -->
+                    <ul class="nav activ-lst" *ngFor="let item of closed" id="{{ item._id }}">
+                        <li>
+                            <!-- nested list -->
+                            <ul class="nav nested-list">
+                                <li>
+                                    <p>Location ID</p>
+                                    <h4>{{ item.name }}</h4>
+                                </li>
+                                <li>
+                                    <p>Updated At</p>
+                                    <h4>{{ item.updatedAt }}</h4>
+                                </li>
+                            </ul>
+                            <ul class="nav nested-list">
+                                <li>
+                                    <p>Tons</p>
+                                    <h4>{{ item.tons }}</h4>
+                                </li>
+                                <li>
+                                    <p>Material</p>
+                                    <h4>{{ item.material }}</h4>
+                                </li>
+                            </ul>
+                            <!--// nested list -->
+                        </li>
+                        <li class="imp-notes">
+                            <p>notes</p>
+                            <p>{{ item.notes }}</p>
+                            <div class="edit-shit" data-toggle="modal" data-target="#editModal" (click)="selectLocation(item._id)">
+                                <img src="/assets/images/edit-icn.svg" alt="edit-icn.svg">
+                            </div>
+                        </li>
+                        <div class="move">
+                            <img src="/assets/images/move-icn.svg" alt="move-icn.svg">
+                        </div>
+                    </ul>
+                    <!-- shift items -->
+                </div>
+            </div>
+            <!--// colsed -->
+        </div>
+        <!--// status of shifts -->
+    </div>
+  </div>
+
+  <div class="modal fade" id="addModal" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content" align="center">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              <img src="assets/images/close.png">
+                    </button>
+              <h4 class="modal-title">Add Location</h4>
+          </div>
+          <div class="modal-body">
+                  <p class="err-msg" *ngIf="isVisible">
+                          {{message}}
+                          <!-- This account has been deactivated -->
+                        </p>
+                          <div class="col-lg-12 col-md-12 col-sm-12 pad-0">
+                              <form class="form-add-usr userBody">
+                                <label class="grey">
+                                  <b>ID</b>
+                                </label>
+                                <input name="name" class="form-control lgn-input editable" [(ngModel)]="locationObj.name">
+                                            <label class="grey">
+                                  <b>TONS</b>
+                                </label>
+                                <input name="tons" class="form-control lgn-input editable" [(ngModel)]="locationObj.tons">
+                                <label class="grey">
+                                  <b>MATERIAL</b>
+                                </label>
+                                <input name="material" class="form-control lgn-input editable" [(ngModel)]="locationObj.material">
+                                             <label class="grey">
+                                  <b>STATUS</b>
+                                </label>
+                                <mat-form-field class="lgn-input editable">
+                                    <mat-select [(placeholder)]="locationObj.status" [(value)]="locationObj.status">
+                                      <mat-option value="active">
+                                        Active
+                                      </mat-option>
+                                      <mat-option value="available">
+                                        Available
+                                      </mat-option>
+                                      <mat-option value="closed">
+                                        Closed
+                                      </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <label class="grey">
+                                    <b>NOTES</b>
+                                  </label>
+                                  <textarea name="notes" class="form-control lgn-input editable" rows="6" cols="50" [(ngModel)]="locationObj.notes"></textarea>
+                              </form>
+                        </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" data-dismiss="modal" class="save-btn cancel-btn btn btn-default">CANCEL</button>
+            <button type="button" (click)="addLocation()"  class="save-btn btn btn-default">ADD</button>
+          </div>
+        </div>
+      </div>
+  </div>
+  
+  <div class="modal fade" id="editModal" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content" align="center">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              <img src="assets/images/close.png">
+                    </button>
+              <h4 class="modal-title">Edit Location</h4>
+          </div>
+          <div class="modal-body">
+                  <p class="err-msg" *ngIf="isVisible">
+                          {{message}} 
+                          <!-- This account has been deactivated -->
+                        </p>
+                        <button type="button" (click)="deleteLocation()"  class="btn btn-danger">DELETE</button>
+                          <div class="col-lg-12 col-md-12 col-sm-12 pad-0">
+                                  <form class="form-add-usr userBody">
+                                    <label class="grey">
+                                      <b>ID</b>
+                                    </label>
+                                    <input name="name" class="form-control lgn-input editable" [(ngModel)]="currentLocation.name">
+                                                <label class="grey">
+                                      <b>TONS</b>
+                                    </label>
+                                    <input name="tons" class="form-control lgn-input editable" [(ngModel)]="currentLocation.tons">
+                                    <label class="grey">
+                                      <b>MATERIAL</b>
+                                    </label>
+                                    <input name="material" class="form-control lgn-input editable" [(ngModel)]="currentLocation.material">
+                                                 <label class="grey">
+                                      <b>STATUS</b>
+                                    </label>
+                                    <label class="grey">
+                                        <b>NOTES</b>
+                                      </label>
+                                      <textarea name="notes" class="form-control lgn-input editable" rows="6" cols="50" [(ngModel)]="currentLocation.notes"></textarea>
+                                  </form>
+                        </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" data-dismiss="modal" class="save-btn cancel-btn btn btn-default">CANCEL</button>
+            <button type="button" (click)="editLocation()"  class="save-btn btn btn-default">EDIT</button>
+          </div>
+        </div>
+      </div>
+  </div>
+  
+  

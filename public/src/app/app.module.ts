@@ -23,6 +23,7 @@ import { DashboardService } from './dashboard/dashboard.service';
 import { LogService } from './log.service';
 import { LogsService } from './logs/logs.service';
 import { EquipmentService } from './equipment/equipment.service';
+import { LocationService } from './locations/locations.service';
 
 
 const routes: Routes = [
@@ -40,20 +41,20 @@ const routes: Routes = [
           //     component: RedirectComponent
           // },
           {
-              path: 'dashboard',
-              data: { currentPage: 'dashboard' },
+              path: 'miners',
+              data: { currentPage: 'miners' },
               component: DashboardComponent
           },
           {
-              path: 'equipmentStats',
-              data: { currentPage: 'equipmentStats'},
+              path: 'equipment',
+              data: { currentPage: 'equipment'},
               component: EquipmentComponent
           },
-          // {
-          //     path: 'locationStats',
-          //     data: { currentPage: 'users', capabilities: ['onboardUser'] },
-          //     component: NewUserComponent
-          // },
+          {
+              path: 'locations',
+              data: { currentPage: 'locations' },
+              component: LocationsComponent
+          },
           {
               path: 'logs',
               data: { currentPage: 'logs' },
@@ -95,7 +96,8 @@ const routes: Routes = [
     DashboardService,
     LogService,
     LogsService,
-    EquipmentService
+    EquipmentService,
+    LocationService
   ],
   bootstrap: [AppComponent]
 })

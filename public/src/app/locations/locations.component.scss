@@ -1,0 +1,229 @@
+/* day-shft css  */
+.day-shft {
+    float: left;
+    width: 100%;
+}
+
+.day-shft>ul {
+    float: left;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.day-shft>ul>li {
+    display: inline-block;
+}
+
+.day-shft>ul>li:first-child {
+    padding-right: 118px;
+}
+
+.day-shft>ul>li>p {
+    font-size: 11px;
+    color: #515151;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.day-shft>ul>li>h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1D1D1D;
+    text-transform: capitalize;
+    margin: 0;
+}
+/* end day-shft css  */
+/* add location css */
+.schd-topright {
+    float: right;
+    margin-right: 18px;
+}
+
+.schd-topright a {
+    float: left;
+    line-height: 32px;
+    height: 48px;
+}
+
+.schd-topright a i {
+    font-size: 28px;
+    float: left;
+    margin:2px 0 0;
+}
+
+.day-shft .schd-topright .btn {
+    text-align: center;
+    font-size: 16px;
+    color: #FFF;
+    font-weight: 400;
+    background: #C85C60;
+    float: left;
+    border-radius: 4px;
+    width: 216px;
+}
+/* end add location css */
+/* status shifts css*/
+.status-shifts{
+    float: left;
+    width: 100%;
+    margin-top: 30px;
+}
+.actvt-shift{
+    border: 1px solid #E8E8E8;
+    float: left;
+    width: 33%;
+    border-bottom: none;
+}
+.actvt-shift:nth-child(2),.actvt-shift:last-child{
+    border-left: 0;
+}
+.actvt-shift .title{
+    float: left;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    background: #EEEDF0;
+    padding: 16px;
+    color: #1D1D1D;
+    font-weight: 600;
+}
+.inside-itms{
+    float: left;
+    width: 100%;
+    border-top: 1px solid #E8E8E8;
+    padding: 26px;
+    height: 76vh;
+    overflow: auto;
+}
+.actvt-shift .activ-lst{
+    float: left;
+    width: 100%;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    padding: 27px 17px;
+    border-radius: 8px;
+    position: relative;
+    margin-bottom: 26px;
+}
+.actvt-shift .activ-lst>li{
+    float: left;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.activ-lst>.imp-notes{
+    margin-bottom: 0!important;
+}
+.nested-list{
+    display: flex;
+    align-items: right;
+    width: 100%;
+    justify-content: space-between;
+}
+.nested-list>li{
+    flex-grow: 1;    
+}
+.nested-list>li>p{
+    font-size: 11px;
+    color: #4C4C4C;
+    text-transform: uppercase;
+    margin: 0 0 5px;
+    font-weight: 400;
+}
+.activ-lst .nested-list>li>h4{
+    font-size: 16px;
+    color: #494949;
+    margin: 0;
+    font-weight: 400;
+}
+.activ-lst>.imp-notes{
+    position: relative;
+}
+.activ-lst>.imp-notes>.edit-shit{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+}
+.activ-lst>.imp-notes>p{
+    float: left;
+    width: 90%;
+    margin: 0;
+    color: #4A4A4A;
+    margin: 0 0 8px;
+}
+.activ-lst>.imp-notes>p:first-child{
+    text-transform: uppercase;
+}
+.activ-lst>.move{
+    position: absolute;
+    right: 12px;
+    top: 11px;
+    cursor: pointer;
+}
+.activ-lst>.equpmt-id>p{
+    font-size: 11px;
+    color: #4C4C4C;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin: 0 0 5px;
+}
+.activ-lst>.equpmt-id>h4{
+    margin: 0;
+    color: #494949;
+    font-weight: 400;
+    font-size: 16px;
+}
+/*end status shifts css*/
+
+
+#page-wrapper {
+    width: 100%;
+}
+
+@media(min-width:768px) {
+    #page-wrapper {
+        padding-left: 280px;
+        margin-top: 80px;
+    }
+}
+
+.userBody {
+    label: {
+        width: 100%;
+    }
+
+    .lgn-input {
+        // border-bottom: none;
+        background-color: lightgray;
+        width: 100%;
+        border: 1px solid lightgrey;
+        border-radius: 5px;
+        padding: 10px;
+        min-height: 48px;
+        // box-sizing: border-box;
+        font-size: 18px;
+    }
+}
+
+.editable {
+    background-color: #FBFBFB !important;
+}
+
+
+
+::ng-deep .mat-select-placeholder {
+    color: black !important;
+    text-transform: capitalize !important;
+}
+
+::ng-deep .mat-form-field-label-wrapper {
+    opacity: 0 !important;
+}
+
+::ng-deep .cdk-overlay-container{
+    z-index: 1200 !important;
+}
+
+.modal-footer {
+    border-top: none !important;
+}

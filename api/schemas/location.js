@@ -1,30 +1,30 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const moment = require('moment');
-
+const constants = require('../../utils/constants');
 
 const locationSchema = new Schema({
 	createdAt: { type: Date },
 	updatedAt: { type: Date },
-	location: { type: String },
-	locationName: { type: String },
+	name: { type: String },
+	tons: { type: String },
 	status: { type: String },
-	owner: { type: String },
+	material: { type: String },
     type: { type: String },
     notes: { type: String }
 });
 
-const Locations = mongoose.model('Location', locationSchema);
-
 locationSchema.pre('save', function (next) {
-	let user = this;
-	this.type = user.type ? user.type : constants.LOCATION_DOC_TYPE;
+	let location = this;
+	this.type = location.type ? location.type : constants.LOCATION_DOC_TYPE;
 	
-	this.createdAt = user.createdAt ? user.createdAt : moment().local();
+	this.createdAt = location.createdAt ? location.createdAt : moment().local();
 	this.updatedAt = moment().local();
 
 	next();
 })
+
+const Locations = mongoose.model('Location', locationSchema);
 
 Locations.deleteLocation = (id) => {
 	return new Promise((resolve, reject) => {

@@ -13,9 +13,7 @@ const logSchema = new Schema({
     logType: { type: String },
     type: { type: String },
     message: { type: String },
-    logObj: {
-        logSubject: { type: String }
-    }
+    logSubject: { type: String }
 });
 
 logSchema.pre('save', function (next) {
@@ -27,17 +25,22 @@ logSchema.pre('save', function (next) {
     if(this.logType === 'safety' || this.logType === 'hazard' || this.logType === 'shift') {
         //    default missing values other than notes and metadata
         this.loggedObj = {};
-        this.logObj = {};
+        this.logSubject = '';
         // this.message = moment(this.createdAt).format('MM/DD/YYYY h:mm:ss a') + ": " +this.logType.toUpperCase() + " NOTE: " + log.message;
     } 
     if(this.logType === 'update') {
         if(this.loggedObj.preUpdate.type === constants.USER_DOC_TYPE) {
             
-            this.logObj.logSubject === 'USER';
+            this.logSubject = 'USER';
         }
         if(this.loggedObj.preUpdate.type === constants.EQUIPMENT_DOC_TYPE) {
             
-            this.logObj.logSubject === 'EQUIPMENT';
+            this.logSubject = 'EQUIPMENT';
+        }
+
+        if(this.loggedObj.preUpdate.type === constants.LOCATION_DOC_TYPE) {
+            
+            this.logSubject = 'LOCATION';
         }
         this.message = this.loggedObj.postUpdate.name + " changed from " +
         this.loggedObj.preUpdate.status + " to " + this.loggedObj.postUpdate.status;
