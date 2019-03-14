@@ -37,8 +37,6 @@
       <div class="shift-detils-note" (scrolled)="onScroll()">
           <div class="container-fluid">
               <!-- timeline -->
-              <!-- <div class="scroll-bar" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="10" (scrolled)="onScroll()"
-    [scrollWindow]="false"> -->
               <div class="timeline">
                   <!-- timeline-movement -->
                   <div class="row timeline-movement" *ngFor="let log of logs" >
@@ -129,6 +127,51 @@
                               </div>
                           </div>
                       </div>
+                      <!-- hazard-badge -->
+                      <div class="timeline-badge hazard-badz" *ngIf="log.logType === 'shift'">
+                        </div>
+                        <!--// hazard-badge -->
+                        <!-- timeline-left -->
+                        <div class="col-sm-2  timeline-item" *ngIf="log.logType === 'shift'">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                        <!-- safty-credits -->
+                                        <div class="timeline-panel safty-credits">
+                                            <ul class="timeline-panel-ul">
+                                                <!-- warns -->
+                                                <li><span class="importo">Shift Note</span></li>
+                                                <!-- warns -->
+                                                <li>
+                                                    <p class="text-muted">{{ log.createdAt | date: 'EEEE dd MMM hh:mm:ss aa' }}</p>
+                                                </li>
+                                                <!-- <li class="causale">By Nerte Gronw, Supervisor</li> -->
+                                            </ul>
+                                        </div>
+                                        <!--// safty-credits -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--// timeline-left -->
+                        <!-- timeline-right -->
+                        <div class="col-sm-10  timeline-item" *ngIf="log.logType === 'shift'">
+                            <div class="row">
+                                <div class="mrgn-left">
+                                    <!-- safty-debits -->
+                                    <div class="timeline-panel safty-debits">
+                                        <ul class="timeline-panel-ul">
+                                            <!-- notes -->
+                                            <li class="notes">
+                                                {{ log.message }}
+                                            </li>
+                                            <!-- notes -->
+                                        </ul>
+                                    </div>
+                                    <!--// safty-debits -->
+                                </div>
+                            </div>
+                        </div>
                       <!--// timeline-right -->
                   
                       <!-- equpment-badg -->
@@ -268,13 +311,14 @@
                   <ul class="dropdown-menu">
                       <li (click)="selectType('safety')"><a>Safety note</a></li>
                       <li (click)="selectType('hazard')"><a class="hazrd">Hazard note</a></li>
-                      <!-- <li (click)="selectType('shift')"><a>Shift Note</a></li> -->
+                      <li (click)="selectType('shift')"><a style="color:black;">Shift Note</a></li>
                   </ul>
               </li>
               <li>
 
                   <p *ngIf="type ==='safety'"><span class="safty-note"></span> <span> You’re posting Safety Message</span></p>
                   <p *ngIf="type ==='hazard'"><span class="safty-note hazrd-not"></span>You’re posting Hazard Message</p>
+                  <p *ngIf="type ==='shift'"><span class=""></span>You’re posting Shift Note</p>
               </li>
           </ul>
           <!--// pstng-msg -->

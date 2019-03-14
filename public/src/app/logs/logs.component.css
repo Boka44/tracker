@@ -1,13 +1,10 @@
-.scroll-bar {
-    height: 65.4vh !important;
+.shft-detals-hedng {
+    float: left;
+    width: 100%;
 }
 
 #page-wrapper {
     width: 100%;
-}
-
-body {
-    background-color: #F9F9F9 !important;
 }
 
 @media(min-width:768px) {
@@ -17,10 +14,6 @@ body {
     }
 }
 
-.shft-detals-hedng {
-    float: left;
-    width: 100%;
-}
 
 .shft-detals-hedng>h4 {
     float: left;
@@ -50,21 +43,20 @@ body {
     border: 1px solid #E1E1E1;
     margin: 20px 0;
     border-right: 0;
-    /* height: 68vh; */
-    height: 51vh;
+    height: 56vh;
     overflow: auto;
-    /* -webkit-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
     transform: rotate(180deg);
-    direction: rtl; */
+    direction: rtl;
 }
 
 
 .timeline {
     list-style: none;
     position: relative;
-    /* -webkit-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
     transform: rotate(180deg);
-    direction: rtl; */
+    direction: rtl;
 }
 
 .timeline:before {
@@ -229,10 +221,10 @@ body {
 }
 
 .shift-message {
-    /* float: right; */
+    float: right;
     width: 80%;
-    /* box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1); */
-    /* background: #FFF; */
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
+    background: #FFF;
 }
 
 

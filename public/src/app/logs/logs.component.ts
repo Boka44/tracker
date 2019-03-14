@@ -26,7 +26,10 @@ export class LogsComponent implements OnInit {
     this.page = 0;
     this._logsService.getLogs(this.page)
       .subscribe((result: any) => {
-        this.logs = result.data;
+        let reversed = result.data.reverse();
+        this.logs = reversed;
+        // this.logs.reverse();
+        
         console.log(this.logs)
         this.page++;
       }, (err) => {
@@ -46,6 +49,10 @@ export class LogsComponent implements OnInit {
   addLog() {
     console.log(this.type);
     console.log(this.message)
+    if(this.message === "") {
+      this.message = "Must include message";
+      return;
+    }
     this.__logService.generateLog(this.type, this.message, false, false)
       .subscribe((result: any) => {
         console.log(result);
