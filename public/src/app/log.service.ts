@@ -29,7 +29,16 @@ export class LogService {
                 preUpdate: oldObj,
                 postUpdate: newObj
             },
-            logType: type
+            logType: type,
+            logObj: {
+                logSubject: ''
+            }
+        }
+        if(logObj.loggedObj.preUpdate.type === '_ah_user') {
+            logObj.logObj.logSubject === 'USER';
+        }
+        if(logObj.loggedObj.preUpdate.type === '_ah_equipment') {
+            logObj.logObj.logSubject === 'EQUIPMENT';
         }
 
         console.log(logObj)

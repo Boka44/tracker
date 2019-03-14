@@ -1,5 +1,5 @@
-<div id="page-wrapper" align="center">
-  <div>
+<div id="page-wrapper" class="bg-dark">
+  <!-- <div>
     <div class="scroll-bar" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="10" (scrolled)="onScroll()"
     [scrollWindow]="false">
       <ul>
@@ -21,6 +21,274 @@
       <textarea rows="5" cols="50" [(ngModel)]="message"></textarea>
       <button (click)="addLog()">Add</button>
   </div>
-</div>
+</div> -->
 
+<div class="col-sm-12">
+  <div class="col-sm-12">
+      <!-- shift log details -->
+      <div class="shft-detals-hedng">
+          <h4>Shift Log Details  </h4>
+          <button type="submit" class="btn btn-info">Export as PDF</button>
+      </div>
+      <!--// shift log details -->
+  </div>
+  <div class="col-sm-12">
+      <!-- shift-details-note -->
+      <div class="shift-detils-note" (scrolled)="onScroll()">
+          <div class="container-fluid">
+              <!-- timeline -->
+              <!-- <div class="scroll-bar" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="10" (scrolled)="onScroll()"
+    [scrollWindow]="false"> -->
+              <div class="timeline">
+                  <!-- timeline-movement -->
+                  <div class="row timeline-movement" *ngFor="let log of logs" >
+                      <div class="timeline-badge" *ngIf="log.logType === 'safety'">
+                      </div>
+                      <!-- timeline-left -->
+                      <div class="col-sm-2 timeline-item" *ngIf="log.logType === 'safety'">
+                          <div class="row">
+                              <div class="col-sm-12">
+                                  <div class="row">
+                                      <!-- timeline-panel -->
+                                      <div class="timeline-panel safty-credits">
+                                          <ul class="timeline-panel-ul">
+                                              <li><span class="importo">Safety Note</span></li>
+                                              <li>
+                                                  <p class="text-muted">{{ log.createdAt | date: 'EEEE dd MMM hh:mm:ss aa' }}</p>
+                                              </li>
+                                              <!-- <li class="causale">By Nerte Gronw, Supervisor</li> -->
+                                          </ul>
+                                      </div>
+                                      <!--// timeline-panel -->
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <!--// timeline-left -->
+                      <!-- timeline-right -->
+                      <div class="col-sm-10  timeline-item" *ngIf="log.logType === 'safety'">
+                          <div class="row">
+                              <div class="mrgn-left">
+                                  <!-- safty-debits -->
+                                  <div class="timeline-panel safty-debits">
+                                      <ul class="timeline-panel-ul">
+                                          <!-- notes -->
+                                          <li class="notes">
+                                              {{ log.message }}
+                                          </li>
+                                          <!--// notes -->
+                                      </ul>
+                                  </div>
+                                  <!--// safty-debits -->
+                              </div>
+                          </div>
+                      </div>
+                      <!--// timeline-right -->
+                      <!-- hazard-badge -->
+                      <div class="timeline-badge hazard-badz" *ngIf="log.logType === 'hazard'">
+                      </div>
+                      <!--// hazard-badge -->
+                      <!-- timeline-left -->
+                      <div class="col-sm-2  timeline-item" *ngIf="log.logType === 'hazard'">
+                          <div class="row">
+                              <div class="col-sm-12">
+                                  <div class="row">
+                                      <!-- safty-credits -->
+                                      <div class="timeline-panel safty-credits">
+                                          <ul class="timeline-panel-ul">
+                                              <!-- warns -->
+                                              <li><span class="warns importo">Hazard Note</span></li>
+                                              <!-- warns -->
+                                              <li>
+                                                  <p class="text-muted">{{ log.createdAt | date: 'EEEE dd MMM hh:mm:ss aa' }}</p>
+                                              </li>
+                                              <!-- <li class="causale">By Nerte Gronw, Supervisor</li> -->
+                                          </ul>
+                                      </div>
+                                      <!--// safty-credits -->
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <!--// timeline-left -->
+                      <!-- timeline-right -->
+                      <div class="col-sm-10  timeline-item" *ngIf="log.logType === 'hazard'">
+                          <div class="row">
+                              <div class="mrgn-left">
+                                  <!-- safty-debits -->
+                                  <div class="timeline-panel safty-debits">
+                                      <ul class="timeline-panel-ul">
+                                          <!-- notes -->
+                                          <li class="notes">
+                                              {{ log.message }}
+                                          </li>
+                                          <!-- notes -->
+                                      </ul>
+                                  </div>
+                                  <!--// safty-debits -->
+                              </div>
+                          </div>
+                      </div>
+                      <!--// timeline-right -->
+                  
+                      <!-- equpment-badg -->
+                      <!-- <div class="timeline-badge equpment-badg">
+                      </div>
+                      <div class="col-sm-2  timeline-item">
+                          <div class="row">
+                              <div class="col-sm-12">
+                                  <div class="row">
+                                      <div class="timeline-panel safty-credits">
+                                          <ul class="timeline-panel-ul">
+                                              <li><span class="importo eqpmnt-clr">EQUIPMENT STATUS</span></li>
+                                              <li>
+                                                  <p class="text-muted">Monday 25 Feb 2:23:40 pm</p>
+                                              </li>
+                                          </ul>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-sm-10  timeline-item">
+                          <div class="row">
+                              <div class="mrgn-left">
+                                  <div class="timeline-panel safty-debits">
+                                      <ul class="timeline-panel-ul status-of-activity">
+                                          <li>
+                                              <p>Equipment Id</p>
+                                              <h4>TR0001</h4>
+                                          </li>
+                                          <li>
+                                              <p>STATUS</p>
+                                              <h4>Active <span class="pd-left"><i class="fa fa-long-arrow-right"
+                                                          aria-hidden="true"></i></span>Down</h4>
+                                          </li>
+                                          <li>
+                                              <p>DOWN NOTES</p>
+                                              <h4>Down for Reason: Air Filter</h4>
+                                          </li>
+                                          <li class="mrgn-btm">
+                                              <p>UPDATED BY</p>
+                                              <h4>Seth Gregory</h4>
+                                          </li>
+                                          <li class="mrgn-btm">
+                                              <p>Last Known Location</p>
+                                              <h4>AXB_1114_CR1404</h4>
+                                          </li>
+                                      </ul>
+                                  </div>
+
+                              </div>
+                          </div>
+                      </div> -->
+                      <!--// timeline-right -->
+                      <!-- equpment-badg -->
+                      <div class="timeline-badge equpment-badg" *ngIf="log.logType==='update'">
+                      </div>
+                      <!--// equpment-badg -->
+                      <!-- timeline-left -->
+                      <div class="col-sm-2  timeline-item" *ngIf="log.logType==='update'">
+                          <div class="row">
+                              <div class="col-sm-12">
+                                  <div class="row">
+                                      <!-- safty-credits -->
+                                      <div class="timeline-panel safty-credits">
+                                          <ul class="timeline-panel-ul">
+                                              <li><span class="importo eqpmnt-clr">{{ log.logObj.logSubject }} UPDATE</span></li>
+                                              <li>
+                                                  <p class="text-muted">{{ log.createdAt | date: 'EEEE dd MMM hh:mm:ss aa' }}</p>
+                                              </li>
+                                          </ul>
+                                      </div>
+                                      <!--// safty-credits -->
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <!--// timeline-left -->
+                      <!-- timeline-right -->
+                      <div class="col-sm-10  timeline-item" *ngIf="log.logType==='update'">
+                          <div class="row">
+                              <div class="mrgn-left">
+                                  <!-- safty-debits -->
+                                  <div class="timeline-panel safty-debits">
+                                      <!-- status-of-activity -->
+                                      <ul class="timeline-panel-ul status-of-activity">
+                                          <li>
+                                              <p>{{ log.logObj.logSubject }}</p>
+                                              <h4>{{ log.loggedObj.preUpdate.name }}</h4>
+                                          </li>
+                                          <li>
+                                              <p>STATUS</p>
+                                              <h4>{{ log.loggedObj.preUpdate.status }} <span class="pd-left"><i class="fa fa-long-arrow-right"
+                                                aria-hidden="true"></i></span>{{ log.loggedObj.postUpdate.status }}</h4>
+                                          </li>
+                                          <li>
+                                              <p>NOTES</p>
+                                              <h4>{{ log.loggedObj.postUpdate.notes }}</h4>
+                                          </li>
+                                          <!-- <li class="mrgn-btm">
+                                              <p>UPDATED BY</p>
+                                              <h4>Seth Gregory</h4>
+                                          </li>
+                                          <li class="mrgn-btm">
+                                              <p>STATUS</p>
+                                              <h4>Completed - Ready to Load</h4>
+                                          </li>
+                                          <li class="mrgn-btm">
+                                              <p>Count (Actual / Planned)</p>
+                                              <h4>80 / 88 Hole(s)</h4>
+                                          </li> -->
+                                      </ul>
+                                      <!--// status-of-activity -->
+                                  </div>
+                                  <!--// safty-debits -->
+                              </div>
+                          </div>
+                      </div>
+                      <!--// timeline-right -->
+                  <!-- timeline-movement -->
+              </div>
+              <!--// timeline -->
+              <!-- </div> -->
+              <!-- //scrollbar -->
+          </div>
+      </div>
+      </div>
+      <!--// shift-details-note -->
+      <!-- shift-message -->
+      <div class="shift-message">
+          <!-- pstng-msg -->
+          <ul class="nav pstng-msg">
+              <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown">
+                      <img src="/assets/images/drp-dwn.svg" alt="drp-dwn.svg">
+                  </a>
+                  <ul class="dropdown-menu">
+                      <li (click)="selectType('safety')"><a>Safety note</a></li>
+                      <li (click)="selectType('hazard')"><a class="hazrd">Hazard note</a></li>
+                      <!-- <li (click)="selectType('shift')"><a>Shift Note</a></li> -->
+                  </ul>
+              </li>
+              <li>
+
+                  <p *ngIf="type ==='safety'"><span class="safty-note"></span> <span> You’re posting Safety Message</span></p>
+                  <p *ngIf="type ==='hazard'"><span class="safty-note hazrd-not"></span>You’re posting Hazard Message</p>
+              </li>
+          </ul>
+          <!--// pstng-msg -->
+          <!-- chat-bot -->
+          <div class="chat-bot">
+              <!-- textarea -->
+              <textarea placeholder="Type your message here" [(ngModel)]="message"></textarea>
+              <!--// textarea -->
+              <!-- for sending message -->
+              <span (click)="addLog()"> <img src="/assets/images/send-msg.svg" alt="send-msg.svg"></span>
+          </div>
+          <!--// chat-bot -->
+      </div>
+      <!--// shift-message -->
+  </div>
+</div>
 

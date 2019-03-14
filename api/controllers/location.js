@@ -2,7 +2,7 @@ const Promise = require('bluebird');
 const moment = require('moment');
 const _ = require('lodash');
 
-const Location = require('../schemas/Location');
+const Location = require('../schemas/location');
 
 const locationController = () => { };
 

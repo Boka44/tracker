@@ -3,6 +3,7 @@ import { LogsService } from './logs.service';
 import { LogService } from '../log.service';
 import* as _ from 'lodash';
 import { generate } from 'rxjs';
+import { Logs } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-logs',
@@ -16,7 +17,7 @@ export class LogsComponent implements OnInit {
     private __logService: LogService
   ) { }
 
-  logs = [];
+  logs = [ ];
   page: number = 0;
   type = 'safety';
   message;
@@ -26,6 +27,7 @@ export class LogsComponent implements OnInit {
     this._logsService.getLogs(this.page)
       .subscribe((result: any) => {
         this.logs = result.data;
+        console.log(this.logs)
         this.page++;
       }, (err) => {
         console.log(err);
@@ -53,6 +55,11 @@ export class LogsComponent implements OnInit {
       }, (err) => {
         console.log(err);
       })
+  }
+
+  selectType(type) {
+    this.type = type;
+    console.log(type)
   }
 
 }

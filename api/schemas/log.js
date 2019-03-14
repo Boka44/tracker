@@ -12,7 +12,10 @@ const logSchema = new Schema({
     },
     logType: { type: String },
     type: { type: String },
-    message: { type: String }
+    message: { type: String },
+    logObj: {
+        logSubject: { type: String }
+    }
 });
 
 logSchema.pre('save', function (next) {
@@ -21,14 +24,22 @@ logSchema.pre('save', function (next) {
     this.logType = log.logType ? log.logType : 'update';
     this.type = log.type ? log.type : constants.LOG_DOC_TYPE;
     this.createdAt = moment().local().format();
-    if(this.logType === 'safety' || this.logType === 'hazard') {
+    if(this.logType === 'safety' || this.logType === 'hazard' || this.logType === 'shift') {
         //    default missing values other than notes and metadata
         this.loggedObj = {};
-        this.message = moment(this.createdAt).format('MM/DD/YYYY h:mm:ss a') + ": " +this.logType.toUpperCase() + " NOTE: " + log.message;
+        this.logObj = {};
+        // this.message = moment(this.createdAt).format('MM/DD/YYYY h:mm:ss a') + ": " +this.logType.toUpperCase() + " NOTE: " + log.message;
     } 
     if(this.logType === 'update') {
-        
-        this.message = moment(this.createdAt).format('MM/DD/YYYY h:mm:ss a') + ": " + this.loggedObj.postUpdate.name + " changed from " +
+        if(this.loggedObj.preUpdate.type === constants.USER_DOC_TYPE) {
+            
+            this.logObj.logSubject === 'USER';
+        }
+        if(this.loggedObj.preUpdate.type === constants.EQUIPMENT_DOC_TYPE) {
+            
+            this.logObj.logSubject === 'EQUIPMENT';
+        }
+        this.message = this.loggedObj.postUpdate.name + " changed from " +
         this.loggedObj.preUpdate.status + " to " + this.loggedObj.postUpdate.status;
     }
 	next();
