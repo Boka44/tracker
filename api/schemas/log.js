@@ -60,10 +60,11 @@ const Logs = mongoose.model('Log', logSchema);
 
 Logs.getLogsWithPagination = (page) => {
     return new Promise((resolve, reject) => {
-        let LIMITER = page * 20;
+        let LIMITER = 5;
+        let SKIP = page * LIMITER;
         Logs.find({})
         .sort({'createdAt': -1})
-        .skip(LIMITER)
+        .skip(SKIP)
         .limit(LIMITER)
         .exec((err, result) => {
             if(err) reject(err);

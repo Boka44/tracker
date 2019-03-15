@@ -34,7 +34,10 @@
   </div>
   <div class="col-sm-12">
       <!-- shift-details-note -->
-      <div class="shift-detils-note" (scrolled)="onScroll()">
+      <div class="shift-detils-note" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="10" (scrolled)="onScroll()"
+      [scrollWindow]="false">
+          <!-- <div class="scroll-bar" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="10" (scrolled)="onScroll()"
+          [scrollWindow]="false"> -->
           <div class="container-fluid">
               <!-- timeline -->
               <div class="timeline">
@@ -252,7 +255,7 @@
                       <!--// timeline-left -->
                       <!-- timeline-right -->
                       <div class="col-sm-10  timeline-item" *ngIf="log.logType==='update'">
-                          <div class="row">
+                          <div class="row" *ngIf="log.logSubject==='MINER'">
                               <div class="mrgn-left">
                                   <!-- safty-debits -->
                                   <div class="timeline-panel safty-debits">
@@ -289,6 +292,76 @@
                                   <!--// safty-debits -->
                               </div>
                           </div>
+                          <div class="row" *ngIf="log.logSubject==='EQUIPMENT'">
+                              <div class="mrgn-left">
+                                  <!-- safty-debits -->
+                                  <div class="timeline-panel safty-debits">
+                                      <!-- status-of-activity -->
+                                      <ul class="timeline-panel-ul status-of-activity">
+                                          <li>
+                                              <p>{{ log.logSubject }}</p>
+                                              <h4>{{ log.loggedObj.preUpdate.name }}</h4>
+                                          </li>
+                                          <li>
+                                              <p>STATUS</p>
+                                              <h4>{{ log.loggedObj.preUpdate.status }} <span class="pd-left"><i class="fa fa-long-arrow-right"
+                                                aria-hidden="true"></i></span>{{ log.loggedObj.postUpdate.status }}</h4>
+                                          </li>
+                                          <li>
+                                              <p>NOTES</p>
+                                              <h4>{{ log.loggedObj.postUpdate.notes }}</h4>
+                                          </li>
+                                          <li class="mrgn-btm">
+                                              <p>ENGINE HOURS</p>
+                                              <h4>{{ log.loggedObj.postUpdate.engineHours }}</h4>
+                                          </li>
+                                          <li class="mrgn-btm">
+                                              <p>MILEAGE</p>
+                                              <h4>{{ log.loggedObj.postUpdate.mileage }}</h4>
+                                          </li>
+                                          <li class="mrgn-btm">
+                                              <p>LOCATION</p>
+                                              <h4>{{ log.loggedObj.postUpdate.location }}</h4>
+                                          </li>
+                                      </ul>
+                                      <!--// status-of-activity -->
+                                  </div>
+                                  <!--// safty-debits -->
+                              </div>
+                          </div>
+                          <div class="row" *ngIf="log.logSubject==='LOCATION'">
+                              <div class="mrgn-left">
+                                  <!-- safty-debits -->
+                                  <div class="timeline-panel safty-debits">
+                                      <!-- status-of-activity -->
+                                      <ul class="timeline-panel-ul status-of-activity">
+                                          <li>
+                                              <p>{{ log.logSubject }}</p>
+                                              <h4>{{ log.loggedObj.preUpdate.name }}</h4>
+                                          </li>
+                                          <li>
+                                              <p>STATUS</p>
+                                              <h4>{{ log.loggedObj.preUpdate.status }} <span class="pd-left"><i class="fa fa-long-arrow-right"
+                                                aria-hidden="true"></i></span>{{ log.loggedObj.postUpdate.status }}</h4>
+                                          </li>
+                                          <li>
+                                              <p>NOTES</p>
+                                              <h4>{{ log.loggedObj.postUpdate.notes }}</h4>
+                                          </li>
+                                          <li class="mrgn-btm">
+                                              <p>TONS</p>
+                                              <h4>{{ log.loggedObj.postUpdate.tons }}</h4>
+                                          </li>
+                                          <li class="mrgn-btm">
+                                              <p>MATERIAL</p>
+                                              <h4>{{ log.loggedObj.postUpdate.material }}</h4>
+                                          </li>
+                                      </ul>
+                                      <!--// status-of-activity -->
+                                  </div>
+                                  <!--// safty-debits -->
+                              </div>
+                          </div>
                       </div>
                       <!--// timeline-right -->
                   <!-- timeline-movement -->
@@ -297,6 +370,7 @@
               <!-- </div> -->
               <!-- //scrollbar -->
           </div>
+          <!-- </div> -->
       </div>
       </div>
       <!--// shift-details-note -->

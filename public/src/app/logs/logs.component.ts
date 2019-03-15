@@ -42,8 +42,8 @@ export class LogsComponent implements OnInit {
       .subscribe((result: any) => {
         let newLogs = _.union(this.logs, (result.data));
         this.logs = newLogs;
-        this.page++
-      })
+        this.page++;
+      });
   }
 
   addLog() {

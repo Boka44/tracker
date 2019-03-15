@@ -234,7 +234,6 @@
         <div class="modal-body">
                 <p class="err-msg" *ngIf="isVisible">
                         {{message}}
-                        <!-- This account has been deactivated -->
                       </p>
                       <button type="button" (click)="deleteUser()"  class="btn btn-danger">DELETE</button>
                         <div class="col-lg-12 col-md-12 col-sm-12 pad-0">
@@ -261,12 +260,7 @@
                                       <mat-option value="manager">
                                         Manager
                                       </mat-option>
-                                      <!-- <mat-option value="seniorManager">
-                                        Senior Manager
-                                      </mat-option>
-                                      <mat-option value="webAdmin">
-                                        Admin
-                                      </mat-option> -->
+                                      
                                     </mat-select>
                                   </mat-form-field>
                                   <label class="grey">
@@ -283,4 +277,73 @@
       </div>
     </div>
 </div>
+<!-- <div class="modal" id="editModal">
+  <div class="modal-header" >
+      <h3 class="modal-title">Edit Miner
 
+          <span data-dismiss="modal" class="close-mdl"><img src="/assets/images/close.png" alt="close.png"></span>
+      </h3>
+  </div>
+
+  <div class="modal-body" >
+      <div class="mult-slct-bx">
+          <ul class="nav">
+              <li>
+                  <div class="form-group serch-field">
+                      <label>Full Name</label>
+                      <input type="text" placeholder="Enter equipment id" class="form-control" [(ngModel)]="currentUser.name">
+                  </div>
+              </li>
+              <li>
+                  <div class="form-group serch-field">
+                      <label>Email</label>
+                      <input type="text" placeholder="Enter equipment id" class="form-control" [(ngModel)]="currentUser.email">
+                  </div>
+              </li>
+              <li>
+                  <div class="form-group">
+                      
+                      <mat-form-field class="lgn-input editable">
+                          <mat-select [(placeholder)]="role" [(value)]="currentUser.role">
+                            <mat-option value="employee">
+                              Employee
+                            </mat-option>
+                            <mat-option value="supervisor">
+                              Supervisor
+                            </mat-option>
+                            <mat-option value="manager">
+                              Manager
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                  </div>
+              </li>
+              <li>
+                  <div class="form-group">
+                      <label>Last Know Location</label>
+                      <select class="form-control" [(value)]="currentUser.role">
+                          <option value="employee">employee</option>
+                          <option>LOC-B20-33012</option>
+                          <option>LOC-B20-33012</option>
+                          <option>LOC-B20-33012</option>
+                      </select>
+                  </div>
+              </li>
+              
+              <li class="notes-area">
+                  <p>Notes</p>
+                  <textarea class="sfty-msg-ara" maxlength="150" placeholder="Enter your notes here" [(ngModel)]="currentUser.notes"></textarea>
+              </li>
+          </ul>
+      </div>
+      <div class="text-area">
+
+      </div>
+  </div>
+
+  <div class="modal-footer">
+      <button class="btn btn-default" data-dismiss="modal" type="button">Cancel</button>
+      <button class="btn btn-info" (click)="editUser()" type="button">Save Changes</button>
+      <button type="button" (click)="deleteUser()"  class="btn btn-danger">DELETE</button>
+  </div>
+</div> -->
