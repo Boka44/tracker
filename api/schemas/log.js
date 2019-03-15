@@ -31,7 +31,7 @@ logSchema.pre('save', function (next) {
     if(this.logType === 'update') {
         if(this.loggedObj.preUpdate.type === constants.USER_DOC_TYPE) {
             
-            this.logSubject = 'USER';
+            this.logSubject = 'MINER';
         }
         if(this.loggedObj.preUpdate.type === constants.EQUIPMENT_DOC_TYPE) {
             

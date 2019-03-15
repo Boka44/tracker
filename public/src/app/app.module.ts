@@ -18,12 +18,14 @@ import { LandingComponent } from './landing/landing.component';
 import { LogsComponent } from './logs/logs.component';
 import { EquipmentComponent } from './equipment/equipment.component';
 import { LocationsComponent } from './locations/locations.component';
+import { RedirectComponent } from './redirect/redirect.component';
 
 import { DashboardService } from './dashboard/dashboard.service';
 import { LogService } from './log.service';
 import { LogsService } from './logs/logs.service';
 import { EquipmentService } from './equipment/equipment.service';
 import { LocationService } from './locations/locations.service';
+import { RedirectService } from './redirect/redirect.service';
 
 
 const routes: Routes = [
@@ -36,10 +38,10 @@ const routes: Routes = [
       component: LandingComponent,
       // canActivate: [AuthService, MeService],
       children: [
-          // {
-          //     path: '',
-          //     component: RedirectComponent
-          // },
+          {
+              path: '',
+              component: RedirectComponent
+          },
           {
               path: 'miners',
               data: { currentPage: 'miners' },
@@ -73,7 +75,8 @@ const routes: Routes = [
     GlobalService,
     LogsComponent,
     EquipmentComponent,
-    LocationsComponent
+    LocationsComponent,
+    RedirectComponent
   ],
   imports: [
     BrowserModule,
@@ -97,7 +100,8 @@ const routes: Routes = [
     LogService,
     LogsService,
     EquipmentService,
-    LocationService
+    LocationService,
+    RedirectService
   ],
   bootstrap: [AppComponent]
 })
