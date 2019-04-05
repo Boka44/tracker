@@ -34,6 +34,8 @@ export class DashboardComponent implements OnInit {
     password: '',
     status: '',
     role: '',
+    equipment: '',
+    location: '',
     notes: ''
   }
 
@@ -41,10 +43,15 @@ export class DashboardComponent implements OnInit {
     name: '',
     email: '',
     role: '',
+    equipment: '',
+    location: '',
     notes: ''
   };
 
+  currentUserCopy: any;
+
   isVisible: Boolean = false;
+  add: Boolean = false;
 
 
   options: SortablejsOptions = {
@@ -108,15 +115,23 @@ export class DashboardComponent implements OnInit {
   }
 
   selectUser(id) {
+    this.add = false;
     this.currentUser = {
       name: '',
       email: '',
       role: '',
+      equipment: '',
+      location: '',
       notes: ''
     };
     const filteredUser= this.userList.filter((user) => user._id === id);
     this.currentUser = filteredUser[0];
+    this.currentUserCopy = Object.assign({}, filteredUser[0]);
     console.log(this.currentUser)
+  }
+
+  clickAdd() {
+    this.add = true;
   }
 
   // add user function
@@ -126,7 +141,7 @@ export class DashboardComponent implements OnInit {
       .subscribe((result: any) => {
         console.log(result);
         // generateLog
-        $('#addModal').hide();
+        $('#modal').hide();
         $('.modal-backdrop').hide();
         this.getUsers();
         this.userObj = {
@@ -135,6 +150,8 @@ export class DashboardComponent implements OnInit {
           password: '',
           status: '',
           role: '',
+          equipment: '',
+          location: '',
           notes: ''
         }
       }, (err: any) => {
@@ -147,7 +164,7 @@ export class DashboardComponent implements OnInit {
     this._dashboardService.deleteUser(this.currentUser)
       .subscribe((result: any) => {
         console.log('deleted');
-        $('#editModal').hide();
+        $('#modal').hide();
         $('.modal-backdrop').hide();
         this.getUsers();
       }, (err) => {
@@ -157,15 +174,19 @@ export class DashboardComponent implements OnInit {
 
   // edit user function
   editUser() {
-    this._dashboardService.editUser(this.currentUser)
-          .subscribe((result: any) => {
-            console.log('edited');
-            $('#editModal').hide();
-            $('.modal-backdrop').hide();
-            // generate log here
-          }, (err) => {
-            console.log(err);
-          })
+    if(JSON.stringify(this.currentUser) !== JSON.stringify(this.currentUserCopy)) {
+      this.generateLog('edit', this.currentUserCopy, this.currentUser);
+      this._dashboardService.editUser(this.currentUser)
+            .subscribe((result: any) => {
+              console.log('edited');
+              $('#modal').hide();
+              $('.modal-backdrop').hide();
+              // generate log here
+            }, (err) => {
+              console.log(err);
+            })
+    }
+    
   }
 
   // update user function
@@ -180,7 +201,7 @@ export class DashboardComponent implements OnInit {
         this._dashboardService.editUser(updatedObj)
           .subscribe((result: any) => {
             console.log('updated')
-            this.generateLog(getResult.data, updatedObj);
+            this.generateLog('update', getResult.data, updatedObj);
             // generate log here
           }, (err) => {
             console.log(err);
@@ -190,8 +211,7 @@ export class DashboardComponent implements OnInit {
       })
   }  
   
-  generateLog(oldObj, newObj) {
-    let type = 'update';
+  generateLog(type, oldObj, newObj) {
     console.log(oldObj)
     console.log(newObj)
     this.__logService.generateLog(type, false, oldObj, newObj)

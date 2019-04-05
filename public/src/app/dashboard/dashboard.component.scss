@@ -100,7 +100,7 @@
     float: left;
     width: 100%;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-    padding: 27px 17px;
+    padding: 27px 17px 20px 17px;
     border-radius: 8px;
     position: relative;
     margin-bottom: 26px;
@@ -152,7 +152,11 @@
     margin: 0 0 8px;
 }
 .activ-lst>.imp-notes>p:first-child{
+    font-size: 11px;
+    color: #4C4C4C;
     text-transform: uppercase;
+    margin: 0 0 5px;
+    font-weight: 400;
 }
 .activ-lst>.move{
     position: absolute;
@@ -226,4 +230,10 @@
 
 .modal-footer {
     border-top: none !important;
+}
+
+.updated {
+    font-size: 11px;
+    margin-bottom: 0;
+    color: dimgrey;
 }

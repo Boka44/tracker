@@ -28,7 +28,9 @@ logController.createLog = (req, res, next) => {
 
 logController.getLogs = (req, res, next) => {
     let page = req.params.page;
-    return Log.getLogsWithPagination(page)
+    if(req.query.filter) {
+        let filter = req.query.filter;
+        return Log.getLogsWithPaginationWithFilter(page, filter)
         .then((result) => {
             logger.info("Get logs successful", req);
             return res.status(200).send({
@@ -40,6 +42,20 @@ logController.getLogs = (req, res, next) => {
             logger.error("Error in getting logs", err, req)
             next(err)
         })
+    } else {
+        return Log.getLogsWithPagination(page)
+        .then((result) => {
+            logger.info("Get logs successful", req);
+            return res.status(200).send({
+                success: true,
+                data: result
+            })
+        })
+        .catch((err) => {
+            logger.error("Error in getting logs", err, req)
+            next(err)
+        })
+    }
 }
 
 module.exports = logController;

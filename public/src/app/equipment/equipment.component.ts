@@ -48,8 +48,10 @@ export class EquipmentComponent implements OnInit {
     notes: ''
   };
 
-  isVisible: Boolean = false;
+  currentEquipmentCopy: any;
 
+  isVisible: Boolean = false;
+  add: Boolean = false;
  
   options: SortablejsOptions = {
     group: 'equipments',
@@ -109,7 +111,12 @@ export class EquipmentComponent implements OnInit {
     })
   }
 
+  clickAdd() {
+    this.add = true;
+  }
+
   selectEquipment(id) {
+    this.add = false;
     this.currentEquipment = {
       name: '',
       engineHours: '',
@@ -121,6 +128,7 @@ export class EquipmentComponent implements OnInit {
     };
     const filteredEquipment= this.equipmentList.filter((equipment) => equipment._id === id);
     this.currentEquipment = filteredEquipment[0];
+    this.currentEquipmentCopy = Object.assign({}, filteredEquipment[0]);
     console.log(this.currentEquipment)
   }
 
@@ -130,7 +138,7 @@ export class EquipmentComponent implements OnInit {
       .subscribe((result: any) => {
         console.log(result);
         // generateLog
-        $('#addModal').hide();
+        $('#modal').hide();
         $('.modal-backdrop').hide();
         this.getEquipments();
         this.equipmentObj = {
@@ -151,7 +159,7 @@ export class EquipmentComponent implements OnInit {
     this._equipmentService.deleteEquipment(this.currentEquipment)
       .subscribe((result: any) => {
         console.log('deleted');
-        $('#editModal').hide();
+        $('#modal').hide();
         $('.modal-backdrop').hide();
         this.getEquipments();
       }, (err) => {
@@ -160,15 +168,19 @@ export class EquipmentComponent implements OnInit {
   }
 
   editEquipment() {
-    this._equipmentService.editEquipment(this.currentEquipment)
+    if(JSON.stringify(this.currentEquipment) !== JSON.stringify(this.currentEquipmentCopy)) {
+      this.generateLog('edit', this.currentEquipmentCopy, this.currentEquipment);
+      this._equipmentService.editEquipment(this.currentEquipment)
           .subscribe((result: any) => {
             console.log('edited');
-            $('#editModal').hide();
+            $('#modal').hide();
             $('.modal-backdrop').hide();
             // generate log here
           }, (err) => {
             console.log(err);
           })
+    }
+    
   }
 
   updateEquipment(id, status) {
@@ -182,7 +194,7 @@ export class EquipmentComponent implements OnInit {
         this._equipmentService.editEquipment(updatedObj)
           .subscribe((result: any) => {
             console.log('updated')
-            this.generateLog(getResult.data, updatedObj);
+            this.generateLog('update', getResult.data, updatedObj);
             // generate log here
             
             
@@ -194,8 +206,7 @@ export class EquipmentComponent implements OnInit {
       })
   }  
   
-  generateLog(oldObj, newObj) {
-    let type = 'update';
+  generateLog(type, oldObj, newObj) {
     console.log(oldObj)
     console.log(newObj)
     this.__logService.generateLog(type, false, oldObj, newObj)

@@ -3,6 +3,10 @@ const Schema = mongoose.Schema;
 const moment = require('moment');
 const constants = require('../../utils/constants');
 
+function compareObjects(oldObj, newObj) {
+    let difference = Object.keys(oldObj).filter(k => oldObj[k] !== newObj[k]);
+    return difference;
+}
 
 const logSchema = new Schema({
     createdAt: { type: Date },
@@ -13,7 +17,8 @@ const logSchema = new Schema({
     logType: { type: String },
     type: { type: String },
     message: { type: String },
-    logSubject: { type: String }
+    logSubject: { type: String },
+    changes: []
 });
 
 logSchema.pre('save', function (next) {
@@ -26,9 +31,10 @@ logSchema.pre('save', function (next) {
         //    default missing values other than notes and metadata
         this.loggedObj = {};
         this.logSubject = '';
+        this.changes = [];
         // this.message = moment(this.createdAt).format('MM/DD/YYYY h:mm:ss a') + ": " +this.logType.toUpperCase() + " NOTE: " + log.message;
     } 
-    if(this.logType === 'update') {
+    if(this.logType === 'update' || this.logType === 'edit') {
         if(this.loggedObj.preUpdate.type === constants.USER_DOC_TYPE) {
             
             this.logSubject = 'MINER';
@@ -42,8 +48,15 @@ logSchema.pre('save', function (next) {
             
             this.logSubject = 'LOCATION';
         }
+    }
+    if(this.logType === 'update') {
+        this.changes = [];
         this.message = this.loggedObj.postUpdate.name + " changed from " +
         this.loggedObj.preUpdate.status + " to " + this.loggedObj.postUpdate.status;
+    }
+    if(this.logType === 'edit') {
+        this.changes = compareObjects(this.loggedObj.preUpdate, this.loggedObj.postUpdate);
+        this.message = '';
     }
 	next();
 })
@@ -63,6 +76,21 @@ Logs.getLogsWithPagination = (page) => {
         let LIMITER = 5;
         let SKIP = page * LIMITER;
         Logs.find({})
+        .sort({'createdAt': -1})
+        .skip(SKIP)
+        .limit(LIMITER)
+        .exec((err, result) => {
+            if(err) reject(err);
+            resolve(result);
+        }) 
+    })
+}
+
+Logs.getLogsWithPaginationWithFilter = (page, type) => {
+    return new Promise((resolve, reject) => {
+        let LIMITER = 5;
+        let SKIP = page * LIMITER;
+        Logs.find({logType: type})
         .sort({'createdAt': -1})
         .skip(SKIP)
         .limit(LIMITER)

@@ -44,8 +44,10 @@ export class LocationsComponent implements OnInit {
     notes: ''
   }
 
-  isVisible: Boolean = false;
+  currentLocationCopy: any;
 
+  isVisible: Boolean = false;
+  add: Boolean = false;
  
   options: SortablejsOptions = {
     group: 'locations',
@@ -106,6 +108,7 @@ export class LocationsComponent implements OnInit {
   }
 
   selectLocation(id) {
+    this.add = false;
     this.currentLocation = {
       name: '',
       tons: '',
@@ -115,7 +118,12 @@ export class LocationsComponent implements OnInit {
     };
     const filteredLocation= this.locationList.filter((location) => location._id === id);
     this.currentLocation = filteredLocation[0];
+    this.currentLocationCopy = Object.assign({}, filteredLocation[0]);
     console.log(this.currentLocation)
+  }
+
+  clickAdd() {
+    this.add = true;
   }
 
   addLocation() {
@@ -124,7 +132,7 @@ export class LocationsComponent implements OnInit {
       .subscribe((result: any) => {
         console.log(result);
         // generateLog
-        $('#addModal').hide();
+        $('#modal').hide();
         $('.modal-backdrop').hide();
         this.getLocations();
         this.locationObj = {
@@ -143,7 +151,7 @@ export class LocationsComponent implements OnInit {
     this._locationService.deleteLocation(this.currentLocation)
       .subscribe((result: any) => {
         console.log('deleted');
-        $('#editModal').hide();
+        $('#modal').hide();
         $('.modal-backdrop').hide();
         this.getLocations();
       }, (err) => {
@@ -152,15 +160,18 @@ export class LocationsComponent implements OnInit {
   }
 
   editLocation() {
-    this._locationService.editLocation(this.currentLocation)
-          .subscribe((result: any) => {
-            console.log('edited');
-            $('#editModal').hide();
-            $('.modal-backdrop').hide();
-            // generate log here
-          }, (err) => {
-            console.log(err);
-          })
+    if(JSON.stringify(this.currentLocation) !== JSON.stringify(this.currentLocationCopy)) {
+      this.generateLog('edit', this.currentLocationCopy, this.currentLocation);
+      this._locationService.editLocation(this.currentLocation)
+            .subscribe((result: any) => {
+              console.log('edited');
+              $('#modal').hide();
+              $('.modal-backdrop').hide();
+              // generate log here
+            }, (err) => {
+              console.log(err);
+            })
+    }
   }
 
   updateLocation(id, status) {
@@ -174,7 +185,7 @@ export class LocationsComponent implements OnInit {
         this._locationService.editLocation(updatedObj)
           .subscribe((result: any) => {
             console.log('updated')
-            this.generateLog(getResult.data, updatedObj);
+            this.generateLog('update', getResult.data, updatedObj);
             // generate log here
             
             
@@ -186,8 +197,7 @@ export class LocationsComponent implements OnInit {
       })
   }  
   
-  generateLog(oldObj, newObj) {
-    let type = 'update';
+  generateLog(type, oldObj, newObj) {
     console.log(oldObj)
     console.log(newObj)
     this.__logService.generateLog(type, false, oldObj, newObj)

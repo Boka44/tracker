@@ -15,7 +15,7 @@
             <!--// shift date and time -->
             <!-- add location -->
             <div class="schd-topright">
-                <a class="btn bg-btn color-mrn" data-toggle="modal" data-target="#addModal">
+                <a class="btn bg-btn color-mrn" data-toggle="modal" data-target="#modal" (click)="clickAdd()">
                     <i class="fa fa-plus-circle" aria-hidden="true"></i>
                     Add New Equipment
                 </a>
@@ -39,10 +39,6 @@
                                     <p>Equipment ID</p>
                                     <h4>{{ item.name }}</h4>
                                 </li>
-                                <li>
-                                    <p>Updated At</p>
-                                    <h4>{{ item.updatedAt }}</h4>
-                                </li>
                             </ul>
                             <ul class="nav nested-list">
                                 <li>
@@ -69,10 +65,11 @@
                         <li class="imp-notes">
                             <p>notes</p>
                             <p>{{ item.notes }}</p>
-                            <div class="edit-shit" data-toggle="modal" data-target="#editModal" (click)="selectEquipment(item._id)">
+                            <div class="edit-shit" data-toggle="modal" data-target="#modal" (click)="selectEquipment(item._id)">
                                 <img src="/assets/images/edit-icn.svg" alt="edit-icn.svg">
                             </div>
                         </li>
+                        <p class="updated">Last Updated at {{ item.updatedAt }}</p>
                         <div class="move">
                             <img src="/assets/images/move-icn.svg" alt="move-icn.svg">
                         </div>
@@ -94,10 +91,6 @@
                                     <p>Equipment ID</p>
                                     <h4>{{ item.name }}</h4>
                                 </li>
-                                <li>
-                                    <p>Updated At</p>
-                                    <h4>{{ item.updatedAt }}</h4>
-                                </li>
                             </ul>
                             <ul class="nav nested-list">
                                 <li>
@@ -124,10 +117,11 @@
                         <li class="imp-notes">
                             <p>notes</p>
                             <p>{{ item.notes }}</p>
-                            <div class="edit-shit" data-toggle="modal" data-target="#editModal" (click)="selectEquipment(item._id)">
+                            <div class="edit-shit" data-toggle="modal" data-target="#modal" (click)="selectEquipment(item._id)">
                                 <img src="/assets/images/edit-icn.svg" alt="edit-icn.svg">
                             </div>
                         </li>
+                        <p class="updated">Last Updated at {{ item.updatedAt }}</p>
                         <div class="move">
                             <img src="/assets/images/move-icn.svg" alt="move-icn.svg">
                         </div>
@@ -148,10 +142,6 @@
                                     <p>Equipment ID</p>
                                     <h4>{{ item.name }}</h4>
                                 </li>
-                                <li>
-                                    <p>Updated At</p>
-                                    <h4>{{ item.updatedAt }}</h4>
-                                </li>
                             </ul>
                             <ul class="nav nested-list">
                                 <li>
@@ -178,10 +168,11 @@
                         <li class="imp-notes">
                             <p>notes</p>
                             <p>{{ item.notes }}</p>
-                            <div class="edit-shit" data-toggle="modal" data-target="#editModal" (click)="selectEquipment(item._id)">
+                            <div class="edit-shit" data-toggle="modal" data-target="#modal" (click)="selectEquipment(item._id)">
                                 <img src="/assets/images/edit-icn.svg" alt="edit-icn.svg">
                             </div>
                         </li>
+                        <p class="updated">Last Updated at {{ item.updatedAt }}</p>
                         <div class="move">
                             <img src="/assets/images/move-icn.svg" alt="move-icn.svg">
                         </div>
@@ -195,126 +186,84 @@
     </div>
   </div>
 
-  <div class="modal fade" id="addModal" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content" align="center">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">
-              <img src="assets/images/close.png">
-                    </button>
-              <h4 class="modal-title">Add Equipment</h4>
-          </div>
-          <div class="modal-body">
-                  <p class="err-msg" *ngIf="isVisible">
-                          {{message}}
-                          <!-- This account has been deactivated -->
-                        </p>
-                          <div class="col-lg-12 col-md-12 col-sm-12 pad-0">
-                              <form class="form-add-usr userBody">
-                                <label class="grey">
-                                  <b>ID</b>
-                                </label>
-                                <input name="name" class="form-control lgn-input editable" [(ngModel)]="equipmentObj.name">
-                                            <label class="grey">
-                                  <b>ENGINE HOURS</b>
-                                </label>
-                                <input name="name" class="form-control lgn-input editable" [(ngModel)]="equipmentObj.engineHours">
-                                <label class="grey">
-                                  <b>MILEAGE</b>
-                                </label>
-                                <input name="name" class="form-control lgn-input editable" [(ngModel)]="equipmentObj.mileage">
-                                             <label class="grey">
-                                  <b>STATUS</b>
-                                </label>
-                                <mat-form-field class="lgn-input editable">
-                                    <mat-select [(placeholder)]="equipmentObj.status" [(value)]="equipmentObj.status">
-                                      <mat-option value="active">
-                                        Active
-                                      </mat-option>
-                                      <mat-option value="parked">
-                                        Parked
-                                      </mat-option>
-                                      <mat-option value="down">
-                                        Down
-                                      </mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                                <label class="grey">
-                                  <b>LOCATION</b>
-                                </label>
-                                <input name="name" class="form-control lgn-input editable" [(ngModel)]="equipmentObj.location"> 
-                                <label class="grey">
-                                  <b>MINER</b>
-                                </label>
-                                <input name="name" class="form-control lgn-input editable" [(ngModel)]="equipmentObj.miner">                                 
-                                <label class="grey">
-                                    <b>NOTES</b>
-                                  </label>
-                                  <textarea name="notes" class="form-control lgn-input editable" rows="6" cols="50" [(ngModel)]="equipmentObj.notes"></textarea>
-                              </form>
+  
+  <div class="modal" id="modal">
+        <div class="modal-header" >
+            <h3 *ngIf="!add" class="modal-title">Edit Equipment
+      
+                <span data-dismiss="modal" class="close-mdl"><img src="/assets/images/close.png" alt="close.png"></span>
+            </h3>
+            <h3 *ngIf="add" class="modal-title">Add Equipment
+      
+                <span data-dismiss="modal" class="close-mdl"><img src="/assets/images/close.png" alt="close.png"></span>
+            </h3>
+        </div>
+      
+        <div class="modal-body" >
+            <div class="mult-slct-bx">
+                <ul class="nav">
+                    <li>
+                        <div class="form-group serch-field">
+                            <label>ID</label>
+                            <input *ngIf="!add" type="text" placeholder="Enter equipment Id" class="form-control" [(ngModel)]="currentEquipment.name">
+                            <input *ngIf="add" type="text" placeholder="Enter equipment Id" class="form-control" [(ngModel)]="equipmentObj.name">
                         </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" data-dismiss="modal" class="save-btn cancel-btn btn btn-default">CANCEL</button>
-            <button type="button" (click)="addEquipment()"  class="save-btn btn btn-default">ADD</button>
-          </div>
+                    </li>
+                    <li>
+                        <div class="form-group serch-field">
+                            <label>Engine Hours</label>
+                            <input *ngIf="!add" type="text" placeholder="Enter engine hours" class="form-control" [(ngModel)]="currentEquipment.engineHours">
+                            <input *ngIf="add" type="text" placeholder="Enter engine hours" class="form-control" [(ngModel)]="equipmentObj.engineHours">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-group serch-field">
+                            <label>Mileage</label>
+                            <input *ngIf="!add" type="text" placeholder="Enter mileage" class="form-control" [(ngModel)]="currentEquipment.mileage">
+                            <input *ngIf="add" type="text" placeholder="Enter mileage" class="form-control" [(ngModel)]="equipmentObj.mileage">
+                        </div>
+                    </li>
+                    <li *ngIf="add">
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select class="form-control" [(ngModel)]="equipmentObj.status">
+                                <option value="active">Active</option>
+                                <option value="parked">Parked</option>
+                                <option value="down">Down</option>
+                            </select>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-group serch-field">
+                            <label>Location</label>
+                            <input *ngIf="!add" type="text" placeholder="Enter equipment location" class="form-control" [(ngModel)]="currentEquipment.location">
+                            <input *ngIf="add" type="text" placeholder="Enter equipment location" class="form-control" [(ngModel)]="equipmentObj.location">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-group serch-field">
+                            <label>Miner</label>
+                            <input *ngIf="!add" type="text" placeholder="Enter miner name" class="form-control" [(ngModel)]="currentEquipment.miner">
+                            <input *ngIf="add" type="text" placeholder="Enter miner name" class="form-control" [(ngModel)]="equipmentObj.miner">
+                        </div>
+                    </li>
+                    
+                    <li class="notes-area">
+                        <p>Notes</p>
+                        <textarea *ngIf="!add" class="sfty-msg-ara" maxlength="150" placeholder="Enter your notes here" [(ngModel)]="currentEquipment.notes"></textarea>
+                        <textarea *ngIf="add" class="sfty-msg-ara" maxlength="150" placeholder="Enter your notes here" [(ngModel)]="equipmentObj.notes"></textarea>
+                  </li>
+                </ul>
+            </div>
+            <div class="text-area">
+      
+            </div>
+        </div>
+      
+        <div class="modal-footer">
+            <button class="btn btn-default" data-dismiss="modal" type="button">Cancel</button>
+            <button *ngIf="!add" type="button" (click)="deleteEquipment()" class="btn btn-danger">DELETE</button>
+            <button *ngIf="!add" class="btn btn-info" (click)="editEquipment()" type="button">Save Changes</button>
+            <button *ngIf="add" class="btn btn-info" (click)="addEquipment()" type="button">Add Miner</button>
         </div>
       </div>
-  </div>
-  
-  <div class="modal fade" id="editModal" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content" align="center">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">
-              <img src="assets/images/close.png">
-                    </button>
-              <h4 class="modal-title">Edit Equipment</h4>
-          </div>
-          <div class="modal-body">
-                  <p class="err-msg" *ngIf="isVisible">
-                          {{message}} 
-                          <!-- This account has been deactivated -->
-                        </p>
-                        <button type="button" (click)="deleteEquipment()"  class="btn btn-danger">DELETE</button>
-                          <div class="col-lg-12 col-md-12 col-sm-12 pad-0">
-                                  <form class="form-add-usr userBody">
-                                    <label class="grey">
-                                      <b>ID</b>
-                                    </label>
-                                    <input name="name" class="form-control lgn-input editable" [(ngModel)]="currentEquipment.name">
-                                                <label class="grey">
-                                      <b>ENGINE HOURS</b>
-                                    </label>
-                                    <input name="engineHours" class="form-control lgn-input editable" [(ngModel)]="currentEquipment.engineHours">
-                                    <label class="grey">
-                                      <b>MILEAGE</b>
-                                    </label>
-                                    <input name="mileage" class="form-control lgn-input editable" [(ngModel)]="currentEquipment.mileage">
-                                                 <label class="grey">
-                                      <b>STATUS</b>
-                                    </label>
-                                    <label class="grey">
-                                      <b>LOCATION</b>
-                                    </label>
-                                    <input name="location" class="form-control lgn-input editable" [(ngModel)]="currentEquipment.location"> 
-                                    <label class="grey">
-                                      <b>MINER</b>
-                                    </label>
-                                    <input name="miner" class="form-control lgn-input editable" [(ngModel)]="currentEquipment.miner">                                 
-                                    <label class="grey">
-                                        <b>NOTES</b>
-                                      </label>
-                                      <textarea name="notes" class="form-control lgn-input editable" rows="6" cols="50" [(ngModel)]="currentEquipment.notes"></textarea>
-                                  </form>
-                        </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" data-dismiss="modal" class="save-btn cancel-btn btn btn-default">CANCEL</button>
-            <button type="button" (click)="editEquipment()"  class="save-btn btn btn-default">EDIT</button>
-          </div>
-        </div>
-      </div>
-  </div>
-  
-  

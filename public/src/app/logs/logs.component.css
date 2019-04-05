@@ -23,6 +23,27 @@
     margin: 0;
 }
 
+.shft-detals-hedng>div {
+    width: 25%;
+    float: left;
+    display: flex;
+    margin: auto;
+    margin-left: 40px;
+}
+
+.filter>h5 {
+    width: 15%;
+    line-height: 0;
+    margin-right: 2px;
+}
+.filter>div {
+    display: flex;
+}
+
+.filter .dropdown>p {
+    margin-left: 5px;
+}
+
 .shft-detals-hedng>.btn-info {
     float: right;
     width: 218px;
@@ -73,7 +94,7 @@
 
 .timeline-movement {
     position: relative;
-    padding-top: 40px;
+    padding-top: 20px;
 }
 
 .timeline-movement:last-child {

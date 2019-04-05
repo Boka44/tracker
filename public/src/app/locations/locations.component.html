@@ -15,7 +15,7 @@
             <!--// shift date and time -->
             <!-- add location -->
             <div class="schd-topright">
-                <a class="btn bg-btn color-mrn" data-toggle="modal" data-target="#addModal">
+                <a class="btn bg-btn color-mrn" data-toggle="modal" data-target="#modal" (click)="clickAdd()">
                     <i class="fa fa-plus-circle" aria-hidden="true"></i>
                     Add New Location
                 </a>
@@ -39,10 +39,6 @@
                                     <p>Location ID</p>
                                     <h4>{{ item.name }}</h4>
                                 </li>
-                                <li>
-                                    <p>Updated At</p>
-                                    <h4>{{ item.updatedAt }}</h4>
-                                </li>
                             </ul>
                             <ul class="nav nested-list">
                                 <li>
@@ -59,10 +55,11 @@
                         <li class="imp-notes">
                             <p>notes</p>
                             <p>{{ item.notes }}</p>
-                            <div class="edit-shit" data-toggle="modal" data-target="#editModal" (click)="selectLocation(item._id)">
+                            <div class="edit-shit" data-toggle="modal" data-target="#modal" (click)="selectLocation(item._id)">
                                 <img src="/assets/images/edit-icn.svg" alt="edit-icn.svg">
                             </div>
                         </li>
+                        <p class="updated">Last Updated at {{ item.updatedAt }}</p>
                         <div class="move">
                             <img src="/assets/images/move-icn.svg" alt="move-icn.svg">
                         </div>
@@ -84,10 +81,6 @@
                                     <p>Location ID</p>
                                     <h4>{{ item.name }}</h4>
                                 </li>
-                                <li>
-                                    <p>Updated At</p>
-                                    <h4>{{ item.updatedAt }}</h4>
-                                </li>
                             </ul>
                             <ul class="nav nested-list">
                                 <li>
@@ -104,10 +97,11 @@
                         <li class="imp-notes">
                             <p>notes</p>
                             <p>{{ item.notes }}</p>
-                            <div class="edit-shit" data-toggle="modal" data-target="#editModal" (click)="selectLocation(item._id)">
+                            <div class="edit-shit" data-toggle="modal" data-target="#modal" (click)="selectLocation(item._id)">
                                 <img src="/assets/images/edit-icn.svg" alt="edit-icn.svg">
                             </div>
                         </li>
+                        <p class="updated">Last Updated at {{ item.updatedAt }}</p>
                         <div class="move">
                             <img src="/assets/images/move-icn.svg" alt="move-icn.svg">
                         </div>
@@ -128,10 +122,6 @@
                                     <p>Location ID</p>
                                     <h4>{{ item.name }}</h4>
                                 </li>
-                                <li>
-                                    <p>Updated At</p>
-                                    <h4>{{ item.updatedAt }}</h4>
-                                </li>
                             </ul>
                             <ul class="nav nested-list">
                                 <li>
@@ -148,10 +138,11 @@
                         <li class="imp-notes">
                             <p>notes</p>
                             <p>{{ item.notes }}</p>
-                            <div class="edit-shit" data-toggle="modal" data-target="#editModal" (click)="selectLocation(item._id)">
+                            <div class="edit-shit" data-toggle="modal" data-target="#modal" (click)="selectLocation(item._id)">
                                 <img src="/assets/images/edit-icn.svg" alt="edit-icn.svg">
                             </div>
                         </li>
+                        <p class="updated">Last Updated at {{ item.updatedAt }}</p>
                         <div class="move">
                             <img src="/assets/images/move-icn.svg" alt="move-icn.svg">
                         </div>
@@ -165,110 +156,72 @@
     </div>
   </div>
 
-  <div class="modal fade" id="addModal" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content" align="center">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">
-              <img src="assets/images/close.png">
-                    </button>
-              <h4 class="modal-title">Add Location</h4>
-          </div>
-          <div class="modal-body">
-                  <p class="err-msg" *ngIf="isVisible">
-                          {{message}}
-                          <!-- This account has been deactivated -->
-                        </p>
-                          <div class="col-lg-12 col-md-12 col-sm-12 pad-0">
-                              <form class="form-add-usr userBody">
-                                <label class="grey">
-                                  <b>ID</b>
-                                </label>
-                                <input name="name" class="form-control lgn-input editable" [(ngModel)]="locationObj.name">
-                                            <label class="grey">
-                                  <b>TONS</b>
-                                </label>
-                                <input name="tons" class="form-control lgn-input editable" [(ngModel)]="locationObj.tons">
-                                <label class="grey">
-                                  <b>MATERIAL</b>
-                                </label>
-                                <input name="material" class="form-control lgn-input editable" [(ngModel)]="locationObj.material">
-                                             <label class="grey">
-                                  <b>STATUS</b>
-                                </label>
-                                <mat-form-field class="lgn-input editable">
-                                    <mat-select [(placeholder)]="locationObj.status" [(value)]="locationObj.status">
-                                      <mat-option value="active">
-                                        Active
-                                      </mat-option>
-                                      <mat-option value="available">
-                                        Available
-                                      </mat-option>
-                                      <mat-option value="closed">
-                                        Closed
-                                      </mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                                <label class="grey">
-                                    <b>NOTES</b>
-                                  </label>
-                                  <textarea name="notes" class="form-control lgn-input editable" rows="6" cols="50" [(ngModel)]="locationObj.notes"></textarea>
-                              </form>
-                        </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" data-dismiss="modal" class="save-btn cancel-btn btn btn-default">CANCEL</button>
-            <button type="button" (click)="addLocation()"  class="save-btn btn btn-default">ADD</button>
-          </div>
-        </div>
-      </div>
-  </div>
+
+  <div class="modal" id="modal">
+    <div class="modal-header" >
+        <h3 *ngIf="!add" class="modal-title">Edit Location
   
-  <div class="modal fade" id="editModal" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content" align="center">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">
-              <img src="assets/images/close.png">
-                    </button>
-              <h4 class="modal-title">Edit Location</h4>
-          </div>
-          <div class="modal-body">
-                  <p class="err-msg" *ngIf="isVisible">
-                          {{message}} 
-                          <!-- This account has been deactivated -->
-                        </p>
-                        <button type="button" (click)="deleteLocation()"  class="btn btn-danger">DELETE</button>
-                          <div class="col-lg-12 col-md-12 col-sm-12 pad-0">
-                                  <form class="form-add-usr userBody">
-                                    <label class="grey">
-                                      <b>ID</b>
-                                    </label>
-                                    <input name="name" class="form-control lgn-input editable" [(ngModel)]="currentLocation.name">
-                                                <label class="grey">
-                                      <b>TONS</b>
-                                    </label>
-                                    <input name="tons" class="form-control lgn-input editable" [(ngModel)]="currentLocation.tons">
-                                    <label class="grey">
-                                      <b>MATERIAL</b>
-                                    </label>
-                                    <input name="material" class="form-control lgn-input editable" [(ngModel)]="currentLocation.material">
-                                                 <label class="grey">
-                                      <b>STATUS</b>
-                                    </label>
-                                    <label class="grey">
-                                        <b>NOTES</b>
-                                      </label>
-                                      <textarea name="notes" class="form-control lgn-input editable" rows="6" cols="50" [(ngModel)]="currentLocation.notes"></textarea>
-                                  </form>
-                        </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" data-dismiss="modal" class="save-btn cancel-btn btn btn-default">CANCEL</button>
-            <button type="button" (click)="editLocation()"  class="save-btn btn btn-default">EDIT</button>
-          </div>
+            <span data-dismiss="modal" class="close-mdl"><img src="/assets/images/close.png" alt="close.png"></span>
+        </h3>
+        <h3 *ngIf="add" class="modal-title">Add Location
+  
+            <span data-dismiss="modal" class="close-mdl"><img src="/assets/images/close.png" alt="close.png"></span>
+        </h3>
+    </div>
+  
+    <div class="modal-body" >
+        <div class="mult-slct-bx">
+            <ul class="nav">
+                <li>
+                    <div class="form-group serch-field">
+                        <label>ID</label>
+                        <input *ngIf="!add" type="text" placeholder="Enter location Id" class="form-control" [(ngModel)]="currentLocation.name">
+                        <input *ngIf="add" type="text" placeholder="Enter location Id" class="form-control" [(ngModel)]="locationObj.name">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group serch-field">
+                        <label>Tons</label>
+                        <input *ngIf="!add" type="text" placeholder="Enter engine hours" class="form-control" [(ngModel)]="currentLocation.tons">
+                        <input *ngIf="add" type="text" placeholder="Enter engine hours" class="form-control" [(ngModel)]="locationObj.tons">
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group serch-field">
+                        <label>Material</label>
+                        <input *ngIf="!add" type="text" placeholder="Enter mileage" class="form-control" [(ngModel)]="currentLocation.material">
+                        <input *ngIf="add" type="text" placeholder="Enter mileage" class="form-control" [(ngModel)]="locationObj.material">
+                    </div>
+                </li>
+                <li *ngIf="add">
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select class="form-control" [(ngModel)]="locationObj.status">
+                            <option value="active">Active</option>
+                            <option value="parked">Parked</option>
+                            <option value="down">Down</option>
+                        </select>
+                    </div>
+                </li>
+                
+                <li class="notes-area">
+                    <p>Notes</p>
+                    <textarea *ngIf="!add" class="sfty-msg-ara" maxlength="150" placeholder="Enter your notes here" [(ngModel)]="currentLocation.notes"></textarea>
+                    <textarea *ngIf="add" class="sfty-msg-ara" maxlength="150" placeholder="Enter your notes here" [(ngModel)]="locationObj.notes"></textarea>
+              </li>
+            </ul>
         </div>
-      </div>
+        <div class="text-area">
+  
+        </div>
+    </div>
+  
+    <div class="modal-footer">
+        <button class="btn btn-default" data-dismiss="modal" type="button">Cancel</button>
+        <button *ngIf="!add" type="button" (click)="deleteLocation()" class="btn btn-danger">DELETE</button>
+        <button *ngIf="!add" class="btn btn-info" (click)="editLocation()" type="button">Save Changes</button>
+        <button *ngIf="add" class="btn btn-info" (click)="addLocation()" type="button">Add Miner</button>
+    </div>
   </div>
   
   

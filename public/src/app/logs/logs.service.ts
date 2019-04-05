@@ -9,7 +9,10 @@ export class LogsService {
         private http: HttpClient
     ) { }
 
-    getLogs = (page) => {
+    getLogs = (page, filter) => {
+        if(filter) {
+            return this.http.get(environment.serverUrl + '/logs/' + page + `?filter=${filter}`);
+        }
         return this.http.get(environment.serverUrl + '/logs/' + page);
     }
 

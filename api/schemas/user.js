@@ -18,7 +18,9 @@ const userSchema = new Schema({
 	isDeleted: { type: Boolean, default: false },
 	role: { type: String },
     type: { type: String },
-    notes: { type: String }
+	notes: { type: String },
+	equipment: { type: String },
+	location: { type: String }
 });
 
 userSchema.pre('save', function (next) {

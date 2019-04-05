@@ -15,7 +15,7 @@
             <!--// shift date and time -->
             <!-- add location -->
             <div class="schd-topright">
-                <a class="btn bg-btn color-mrn" data-toggle="modal" data-target="#addModal">
+                <a class="btn bg-btn color-mrn" data-toggle="modal" data-target="#modal" (click)="clickAdd()">
                     <i class="fa fa-plus-circle" aria-hidden="true"></i>
                     Add New User
                 </a>
@@ -39,9 +39,15 @@
                                     <p>Name</p>
                                     <h4>{{ item.name }}</h4>
                                 </li>
+                            </ul>
+                            <ul class="nav nested-list">
                                 <li>
-                                    <p>Updated At</p>
-                                    <h4>{{ item.updatedAt }}</h4>
+                                    <p>Location</p>
+                                    <h4>{{ item.location }}</h4>
+                                </li>
+                                <li>
+                                    <p>Equipment</p>
+                                    <h4>{{ item.equipment }}</h4>
                                 </li>
                             </ul>
                             <!--// nested list -->
@@ -49,10 +55,11 @@
                         <li class="imp-notes">
                             <p>notes</p>
                             <p>{{ item.notes }}</p>
-                            <div class="edit-shit" data-toggle="modal" data-target="#editModal" (click)="selectUser(item._id)">
+                            <div class="edit-shit" data-toggle="modal" data-target="#modal" (click)="selectUser(item._id)">
                                 <img src="/assets/images/edit-icn.svg" alt="edit-icn.svg">
                             </div>
                         </li>
+                        <p class="updated">Last Updated at {{ item.updatedAt }}</p>
                         <div class="move">
                             <img src="/assets/images/move-icn.svg" alt="move-icn.svg">
                         </div>
@@ -74,9 +81,15 @@
                                     <p>Name</p>
                                     <h4>{{ item.name }}</h4>
                                 </li>
+                            </ul>
+                            <ul class="nav nested-list">
                                 <li>
-                                    <p>Updated At</p>
-                                    <h4>{{ item.updatedAt }}</h4>
+                                    <p>Location</p>
+                                    <h4>{{ item.location }}</h4>
+                                </li>
+                                <li>
+                                    <p>Equipment</p>
+                                    <h4>{{ item.equipment }}</h4>
                                 </li>
                             </ul>
                             <!--// nested list -->
@@ -84,10 +97,11 @@
                         <li class="imp-notes">
                             <p>notes</p>
                             <p>{{ item.notes }}</p>
-                            <div class="edit-shit" data-toggle="modal" data-target="#editModal" (click)="selectUser(item._id)">
+                            <div class="edit-shit" data-toggle="modal" data-target="#modal" (click)="selectUser(item._id)">
                                 <img src="/assets/images/edit-icn.svg" alt="edit-icn.svg">
                             </div>
                         </li>
+                        <p class="updated">Last Updated at {{ item.updatedAt }}</p>
                         <div class="move">
                             <img src="/assets/images/move-icn.svg" alt="move-icn.svg">
                         </div>
@@ -108,9 +122,15 @@
                                     <p>Name</p>
                                     <h4>{{ item.name }}</h4>
                                 </li>
+                            </ul>
+                            <ul class="nav nested-list">
                                 <li>
-                                    <p>Updated At</p>
-                                    <h4>{{ item.updatedAt }}</h4>
+                                    <p>Location</p>
+                                    <h4>{{ item.location }}</h4>
+                                </li>
+                                <li>
+                                    <p>Equipment</p>
+                                    <h4>{{ item.equipment }}</h4>
                                 </li>
                             </ul>
                             <!--// nested list -->
@@ -118,10 +138,11 @@
                         <li class="imp-notes">
                             <p>notes</p>
                             <p>{{ item.notes }}</p>
-                            <div class="edit-shit" data-toggle="modal" data-target="#editModal" (click)="selectUser(item._id)">
+                            <div class="edit-shit" data-toggle="modal" data-target="#modal" (click)="selectUser(item._id)">
                                 <img src="/assets/images/edit-icn.svg" alt="edit-icn.svg">
                             </div>
                         </li>
+                        <p class="updated">Last Updated at {{ item.updatedAt }}</p>
                         <div class="move">
                             <img src="/assets/images/move-icn.svg" alt="move-icn.svg">
                         </div>
@@ -135,7 +156,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="addModal" role="dialog">
+<!-- <div class="modal fade" id="addModal" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content" align="center">
         <div class="modal-header">
@@ -147,7 +168,6 @@
         <div class="modal-body">
                 <p class="err-msg" *ngIf="isVisible">
                         {{message}}
-                        <!-- This account has been deactivated -->
                       </p>
                         <div class="col-lg-12 col-md-12 col-sm-12 pad-0">
                             <form class="form-add-usr userBody">
@@ -177,12 +197,7 @@
                                     <mat-option value="pool">
                                       Pool
                                     </mat-option>
-                                    <!-- <mat-option value="seniorManager">
-                                      Senior Manager
-                                    </mat-option>
-                                    <mat-option value="webAdmin">
-                                      Admin
-                                    </mat-option> -->
+                                    
                                   </mat-select>
                                 </mat-form-field>                              
                                 <label class="grey">
@@ -199,12 +214,7 @@
                                       <mat-option value="manager">
                                         Manager
                                       </mat-option>
-                                      <!-- <mat-option value="seniorManager">
-                                        Senior Manager
-                                      </mat-option>
-                                      <mat-option value="webAdmin">
-                                        Admin
-                                      </mat-option> -->
+                                    
                                     </mat-select>
                                   </mat-form-field>
                                   <label class="grey">
@@ -220,9 +230,9 @@
         </div>
       </div>
     </div>
-</div>
+</div> -->
 
-<div class="modal fade" id="editModal" role="dialog">
+<!-- <div class="modal fade" id="editModal" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content" align="center">
         <div class="modal-header">
@@ -276,10 +286,14 @@
         </div>
       </div>
     </div>
-</div>
-<!-- <div class="modal" id="editModal">
+</div> -->
+<div class="modal" id="modal">
   <div class="modal-header" >
-      <h3 class="modal-title">Edit Miner
+      <h3 *ngIf="!add" class="modal-title">Edit Miner
+
+          <span data-dismiss="modal" class="close-mdl"><img src="/assets/images/close.png" alt="close.png"></span>
+      </h3>
+      <h3 *ngIf="add" class="modal-title">Add Miner
 
           <span data-dismiss="modal" class="close-mdl"><img src="/assets/images/close.png" alt="close.png"></span>
       </h3>
@@ -291,49 +305,61 @@
               <li>
                   <div class="form-group serch-field">
                       <label>Full Name</label>
-                      <input type="text" placeholder="Enter equipment id" class="form-control" [(ngModel)]="currentUser.name">
+                      <input *ngIf="!add" type="text" placeholder="Enter miner name" class="form-control" [(ngModel)]="currentUser.name">
+                      <input *ngIf="add" type="text" placeholder="Enter miner name" class="form-control" [(ngModel)]="userObj.name">
                   </div>
               </li>
               <li>
                   <div class="form-group serch-field">
+                      <label>Location</label>
+                      <input *ngIf="!add" type="text" placeholder="Enter location name" class="form-control" [(ngModel)]="currentUser.location">
+                      <input *ngIf="add" type="text" placeholder="Enter location name" class="form-control" [(ngModel)]="userObj.location">
+                  </div>
+              </li>
+              <li>
+                  <div class="form-group serch-field">
+                      <label>Equipment</label>
+                      <input *ngIf="!add" type="text" placeholder="Enter equipment name" class="form-control" [(ngModel)]="currentUser.equipment">
+                      <input *ngIf="add" type="text" placeholder="Enter equipment name" class="form-control" [(ngModel)]="userObj.equipment">
+                  </div>
+              </li>
+              <!-- <li>
+                  <div class="form-group serch-field">
                       <label>Email</label>
                       <input type="text" placeholder="Enter equipment id" class="form-control" [(ngModel)]="currentUser.email">
                   </div>
-              </li>
+              </li> -->
               <li>
                   <div class="form-group">
-                      
-                      <mat-form-field class="lgn-input editable">
-                          <mat-select [(placeholder)]="role" [(value)]="currentUser.role">
-                            <mat-option value="employee">
-                              Employee
-                            </mat-option>
-                            <mat-option value="supervisor">
-                              Supervisor
-                            </mat-option>
-                            <mat-option value="manager">
-                              Manager
-                            </mat-option>
-                          </mat-select>
-                        </mat-form-field>
+                      <label>Role</label>
+                      <select *ngIf="add" class="form-control" [(ngModel)]="userObj.role">
+                          <option value="operator">Operator</option>
+                          <option value="supervisor">Supervisor</option>
+                          <option value="manager">Manager</option>
+                      </select>
+                      <select *ngIf="!add" class="form-control" [(ngModel)]="currentUser.role">
+                          <option value="operator">Operator</option>
+                          <option value="supervisor">Supervisor</option>
+                          <option value="manager">Manager</option>
+                      </select>
                   </div>
               </li>
-              <li>
+              <li *ngIf="add">
                   <div class="form-group">
-                      <label>Last Know Location</label>
-                      <select class="form-control" [(value)]="currentUser.role">
-                          <option value="employee">employee</option>
-                          <option>LOC-B20-33012</option>
-                          <option>LOC-B20-33012</option>
-                          <option>LOC-B20-33012</option>
+                      <label>Status</label>
+                      <select class="form-control" [(ngModel)]="userObj.status">
+                          <option value="working">Working</option>
+                          <option value="lunch">Lunch/ Break</option>
+                          <option value="pool">Pool</option>
                       </select>
                   </div>
               </li>
               
               <li class="notes-area">
                   <p>Notes</p>
-                  <textarea class="sfty-msg-ara" maxlength="150" placeholder="Enter your notes here" [(ngModel)]="currentUser.notes"></textarea>
-              </li>
+                  <textarea *ngIf="!add" class="sfty-msg-ara" maxlength="150" placeholder="Enter your notes here" [(ngModel)]="currentUser.notes"></textarea>
+                  <textarea *ngIf="add" class="sfty-msg-ara" maxlength="150" placeholder="Enter your notes here" [(ngModel)]="userObj.notes"></textarea>
+            </li>
           </ul>
       </div>
       <div class="text-area">
@@ -343,7 +369,8 @@
 
   <div class="modal-footer">
       <button class="btn btn-default" data-dismiss="modal" type="button">Cancel</button>
-      <button class="btn btn-info" (click)="editUser()" type="button">Save Changes</button>
-      <button type="button" (click)="deleteUser()"  class="btn btn-danger">DELETE</button>
+      <button *ngIf="!add" type="button" (click)="deleteUser()" class="btn btn-danger">DELETE</button>
+      <button *ngIf="!add" class="btn btn-info" (click)="editUser()" type="button">Save Changes</button>
+      <button *ngIf="add" class="btn btn-info" (click)="addUser()" type="button">Add Miner</button>
   </div>
-</div> -->
+</div>
