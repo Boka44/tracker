@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LogsService } from './logs.service';
 import { LogService } from '../log.service';
 import* as _ from 'lodash';
+import * as $ from 'jquery';
 import { generate } from 'rxjs';
 import { Logs } from 'selenium-webdriver';
 import { filter } from 'rxjs/operator/filter';
@@ -31,7 +32,7 @@ export class LogsComponent implements OnInit {
         let reversed = result.data.reverse();
         this.logs = reversed;
         // this.logs.reverse();
-        
+        $('.shift-detils-note').scrollTop($(".shift-detils-note")[0].scrollHeight);
         console.log(this.logs)
         this.page++;
       }, (err) => {

@@ -2,10 +2,10 @@
 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
+@import url('https://fonts.googleapis.com/css?family=Poppins');
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Poppins', sans-serif !important;
   background-color: #f9f9f9 !important;
 }
 

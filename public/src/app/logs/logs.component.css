@@ -331,3 +331,7 @@
 .chat-bot>span {
     float: right;
 }
+
+.dropdown-menu > li:hover {
+    cursor: pointer;
+}
