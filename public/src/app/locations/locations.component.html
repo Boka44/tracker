@@ -5,7 +5,7 @@
             <ul class="nav">
                 <li>
                     <p>Date & time</p>
-                    <h4>Mon 25 Feb</h4>
+                    <h4>{{ date }}</h4>
                 </li>
                 <li>
                     <p>shift</p>
@@ -182,15 +182,15 @@
                 <li>
                     <div class="form-group serch-field">
                         <label>Tons</label>
-                        <input *ngIf="!add" type="text" placeholder="Enter engine hours" class="form-control" [(ngModel)]="currentLocation.tons">
-                        <input *ngIf="add" type="text" placeholder="Enter engine hours" class="form-control" [(ngModel)]="locationObj.tons">
+                        <input *ngIf="!add" type="text" placeholder="Enter tons" class="form-control" [(ngModel)]="currentLocation.tons">
+                        <input *ngIf="add" type="text" placeholder="Enter tons" class="form-control" [(ngModel)]="locationObj.tons">
                     </div>
                 </li>
                 <li>
                     <div class="form-group serch-field">
                         <label>Material</label>
-                        <input *ngIf="!add" type="text" placeholder="Enter mileage" class="form-control" [(ngModel)]="currentLocation.material">
-                        <input *ngIf="add" type="text" placeholder="Enter mileage" class="form-control" [(ngModel)]="locationObj.material">
+                        <input *ngIf="!add" type="text" placeholder="Enter material" class="form-control" [(ngModel)]="currentLocation.material">
+                        <input *ngIf="add" type="text" placeholder="Enter material" class="form-control" [(ngModel)]="locationObj.material">
                     </div>
                 </li>
                 <li *ngIf="add">
@@ -220,7 +220,7 @@
         <button class="btn btn-default" data-dismiss="modal" type="button">Cancel</button>
         <button *ngIf="!add" type="button" (click)="deleteLocation()" class="btn btn-danger">DELETE</button>
         <button *ngIf="!add" class="btn btn-info" (click)="editLocation()" type="button">Save Changes</button>
-        <button *ngIf="add" class="btn btn-info" (click)="addLocation()" type="button">Add Miner</button>
+        <button *ngIf="add" class="btn btn-info" (click)="addLocation()" type="button">Add Location</button>
     </div>
   </div>
   

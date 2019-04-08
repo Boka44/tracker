@@ -5,7 +5,7 @@
             <ul class="nav">
                 <li>
                     <p>Date & time</p>
-                    <h4>Mon 25 Feb</h4>
+                    <h4>{{ date }}</h4>
                 </li>
                 <li>
                     <p>shift</p>
@@ -264,6 +264,6 @@
             <button class="btn btn-default" data-dismiss="modal" type="button">Cancel</button>
             <button *ngIf="!add" type="button" (click)="deleteEquipment()" class="btn btn-danger">DELETE</button>
             <button *ngIf="!add" class="btn btn-info" (click)="editEquipment()" type="button">Save Changes</button>
-            <button *ngIf="add" class="btn btn-info" (click)="addEquipment()" type="button">Add Miner</button>
+            <button *ngIf="add" class="btn btn-info" (click)="addEquipment()" type="button">Add Equipment</button>
         </div>
       </div>

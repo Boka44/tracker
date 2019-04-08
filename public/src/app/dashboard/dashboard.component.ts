@@ -22,6 +22,8 @@ export class DashboardComponent implements OnInit {
     this.getUsers();
   }
 
+  date = moment().format('ddd DD MMM YYYY h:mm a');
+
   userList = [];
 
   working = [];

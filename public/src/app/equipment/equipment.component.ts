@@ -21,6 +21,8 @@ export class EquipmentComponent implements OnInit {
   ngOnInit() {
     this.getEquipments();
   }
+  
+  date = moment().format('ddd DD MMM YYYY h:mm a');
 
   equipmentList = [];
 

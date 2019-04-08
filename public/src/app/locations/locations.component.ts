@@ -21,6 +21,8 @@ export class LocationsComponent implements OnInit {
   ngOnInit() {
     this.getLocations();
   }
+  
+  date = moment().format('ddd DD MMM YYYY h:mm a');
 
   locationList = [];
 
